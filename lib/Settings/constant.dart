@@ -1,9 +1,13 @@
 class Constant {
   /// API
-  String loginApi = "";
+  String loginApiByphone = "/loginByPhone";
+  String loginAPIBYemail = "/loginByEmail";
+  String checkPin = "/loginPin";
+  String setName = "/api/set_profile";
+  String setPin = "api/set_pin";
+  String RequestOTP = "/api/new_users";
+  String verifyOTP = "/api/users/otp";
   String logoutApi = "";
-  String changepinApi = "";
-  String changeprofileapi = "";
 
   /// firebase options mobile
   String apiKey = 'AIzaSyD6XrVj2dkYC942CHBqK3-x56Yv3SC3yOg';

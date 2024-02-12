@@ -17,12 +17,11 @@ class LogicApi {
     Map data = {
       'phone': phone,
       'pin': pin,
-
     };
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String uri = constant.urlAPi + constant.loginApi;
+    String uri = constant.urlAPi;
     Uri uriValue = Uri.parse(uri);
 
     var response = await http.post(uriValue, body: data);
@@ -69,7 +68,7 @@ class LogicApi {
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String uri = constant.urlAPi + constant.loginApi;
+    String uri = constant.urlAPi;
     Uri uriValue = Uri.parse(uri);
 
     var response = await http.post(uriValue, body: data);
@@ -110,7 +109,7 @@ class LogicApi {
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String uri = constant.urlAPi + constant.loginApi;
+    String uri = constant.urlAPi;
     Uri uriValue = Uri.parse(uri);
 
     var response = await http.post(uriValue, body: data);
@@ -151,7 +150,7 @@ class LogicApi {
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String uri = constant.urlAPi + constant.loginApi;
+    String uri = constant.urlAPi;
     Uri uriValue = Uri.parse(uri);
 
     var response = await http.post(uriValue, body: data);
@@ -187,8 +186,5 @@ class LogicApi {
     }
   }
 
-
-///
-
-
+  ///
 }
