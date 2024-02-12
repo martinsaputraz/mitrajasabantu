@@ -28,9 +28,9 @@ class Constant {
 
   ///Others
   String urlAPi = "https://bkgkgngv-5000.asse.devtunnels.ms/";
-  String namaPT = "PT.Jasa Bantu Indonesia";
+  String namaPT = "PT. Jasa Bantu Indonesia";
 
-  ///Teks SLider Atas
+  ///Teks Slider Atas
   String teks1SliderAtas = "Jasa kini makin mudah";
   String teks2SliderAtas = "Transaksi juga mudah";
   String teks3SliderAtas = "On your way...";

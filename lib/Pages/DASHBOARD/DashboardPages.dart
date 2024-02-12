@@ -25,6 +25,7 @@ class _DashboardPagesState extends State<DashboardPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: _bottomMenuNavBar[_selectedIndexMenuNavBar],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
