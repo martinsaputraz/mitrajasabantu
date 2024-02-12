@@ -6,11 +6,9 @@ import 'package:flutter_onboarding_slider/background.dart';
 import 'package:flutter_onboarding_slider/background_body.dart';
 import 'package:flutter_onboarding_slider/page_offset_provider.dart';
 import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class OnBoardingFunction extends StatefulWidget {

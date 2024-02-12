@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/PINLogin.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class LoginPages extends StatefulWidget {
@@ -15,11 +14,8 @@ class LoginPages extends StatefulWidget {
 }
 
 class _LoginPagesState extends State<LoginPages> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  //
+  /// FOR 'NOMOR HANDPHONE'
   final TextEditingController _phoneNumber = TextEditingController();
 
   @override
@@ -34,7 +30,10 @@ class _LoginPagesState extends State<LoginPages> {
           style: TextStyle(fontSize: 20, color: assetsColor.textLoginArea),
         ),
       ),
-      body: Column(
+      body:
+          // SingleChildScrollView(
+          //   child:
+          Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +41,7 @@ class _LoginPagesState extends State<LoginPages> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
             child: Image.asset(
-              constants.imageLogo,
+              assetsLogo.jbLogoBGWhite,
               width: 115,
               height: 25,
             ),
@@ -208,7 +207,7 @@ class _LoginPagesState extends State<LoginPages> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const PINLogin()),
+                            builder: (context) => const OTPLogin()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -234,6 +233,7 @@ class _LoginPagesState extends State<LoginPages> {
           ),
         ],
       ),
+      // ),
     );
   }
 }

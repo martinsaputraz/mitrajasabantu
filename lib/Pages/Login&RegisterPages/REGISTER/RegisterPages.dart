@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class RegisterPages extends StatefulWidget {
@@ -39,7 +38,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
             child: Image.asset(
-              'assets/logo/logo_jasabantu_bgwhite.jpg',
+              assetsLogo.jbLogoBGWhite,
               width: 115,
               height: 25,
             ),
@@ -133,7 +132,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                                       padding:
                                           const EdgeInsets.only(right: 20.0),
                                       child: Image.asset(
-                                        constants.imagegoogle,
+                                        'assets/icon/Icon_Google.png',
                                         // color: assetsColor.textLoginwithGoogle,
                                         height: 20,
                                         width: 20,

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class DiscountCard extends StatefulWidget {
@@ -15,7 +13,6 @@ class DiscountCard extends StatefulWidget {
 class _DiscountCardState extends State<DiscountCard> {
   @override
   Widget build(BuildContext context) {
-    // Contoh data dinamis
     List<Map<String, dynamic>> cardData = [
       {
         'bannerImage': 'assets/banner1.jpg',
@@ -76,7 +73,7 @@ class CardWidget extends StatelessWidget {
   final String discountText;
   final String originalPrice;
 
-  const CardWidget({
+  CardWidget({
     super.key,
     required this.bannerImage,
     required this.profileImage,

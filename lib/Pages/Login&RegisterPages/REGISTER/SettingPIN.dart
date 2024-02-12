@@ -1,13 +1,11 @@
-import 'package:aes256gcm/aes256gcm.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
-import 'package:jasa_bantu/local_database/secure_storage.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/InputName.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class SettingPIN extends StatefulWidget {
@@ -22,34 +20,15 @@ class _SettingPINState extends State<SettingPIN> {
 
   ///FOR 'OTP'
   OtpFieldController setPINController = OtpFieldController();
-  String setPIN = "";
-  String screatelkey = "";
-  late String hashed = "";
-  String skripshett = "";
 
   @override
   void initState() {
-    secureCode();
-
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-  }
-
-  void secureCode() async {
-    // Create an instance of Securestorage
-    Securestorage secureStorage = Securestorage();
-
-    // Call the secureToken method to retrieve values
-    Map<String, String> secureValues = await secureStorage.secureToken('');
-
-    // Retrieve the screatelkey value from the map
-    setState(() {
-      screatelkey = secureValues['screatelkey'] ?? '';
-    });
   }
 
   @override
@@ -67,10 +46,12 @@ class _SettingPINState extends State<SettingPIN> {
         child: Column(
           children: [
             /// ICON
-            Image.asset(
-              constants.imagePin,
-              width: 100,
-              height: 100,
+            Container(
+              child: Image.asset(
+                assetsIcon.iconNewpin,
+                width: 100,
+                height: 100,
+              ),
             ),
 
             /// TITLE TEXT
@@ -123,9 +104,6 @@ class _SettingPINState extends State<SettingPIN> {
                       // }
                     },
                     onCompleted: (pin) {
-                      setState(() {
-                        setPIN = pin;
-                      });
                       if (kDebugMode) {
                         print("Completed: $pin");
                       }
@@ -144,21 +122,12 @@ class _SettingPINState extends State<SettingPIN> {
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Center(
                 child: ElevatedButton(
-                  onPressed: () async {
-                    var text =
-                        'gAAAAABlw1C15JeuV5dHI52liC8F3Bs1ytNb2siKLXUZ6bo9t-Z6DlDLi6DmmMqpYESUs5VLhrMC0aOfWHR10sA9EzFgXhb2aw==';
-                    var password =
-                        'MDEwMjAzMDQwNTA2MDcwODA5MTAxMTEyMTMxNDE1MTY=';
-
-                    var encrypted = await Aes256Gcm.encrypt(text, password);
-                    var decrypted = await Aes256Gcm.decrypt(text, password);
-
-                    setState(() {
-                      skripshett =
-                          encrypted; // Assign the encrypted value directly, assuming encrypted is a string
-                    });
-
-                    print('Encrypted text: $decrypted');
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const InputName()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: assetsColor.buttonSavePIN,
@@ -170,7 +139,9 @@ class _SettingPINState extends State<SettingPIN> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Simpan PIN & Selesai',
+                        'Simpan PIN'
+                        // '& Selesai'
+                        ,
                         style: TextStyle(
                             color: assetsColor.textSavePINButton, fontSize: 18),
                       ),

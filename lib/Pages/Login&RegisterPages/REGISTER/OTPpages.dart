@@ -4,14 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/SettingPIN.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class OTPPages extends StatefulWidget {
@@ -116,7 +114,6 @@ class _OTPPagesState extends State<OTPPages> {
       body: Center(
         child: Column(
           children: [
-
             /// TITLE TEXT
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -134,7 +131,7 @@ class _OTPPagesState extends State<OTPPages> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Text(
                 'Cek kotak pesan SMS kamu untuk melihat kode\n'
-                    'OTP yang kami kirimkan ke nomor',
+                'OTP yang kami kirimkan ke nomor',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15, color: assetsColor.textOTPArea),
               ),
@@ -164,10 +161,7 @@ class _OTPPagesState extends State<OTPPages> {
                     obscureText: true,
                     keyboardType: TextInputType.number,
                     length: 6,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    width: MediaQuery.of(context).size.width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldWidth: 40,
                     fieldStyle: FieldStyle.box,
@@ -220,28 +214,28 @@ class _OTPPagesState extends State<OTPPages> {
                 ),
                 child: isResendOTPPressed
                     ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CupertinoActivityIndicator(),
-                    const SizedBox(width: 5),
-                    Text(
-                      'Kirim Ulang',
-                      style: TextStyle(
-                          color: assetsColor.textResendOTPButtonPressed),
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      _formatDuration(remainingTime),
-                      style: TextStyle(
-                          color: assetsColor.textResendOTPButtonPressed),
-                    ),
-                  ],
-                )
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CupertinoActivityIndicator(),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Kirim Ulang',
+                            style: TextStyle(
+                                color: assetsColor.textResendOTPButtonPressed),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            _formatDuration(remainingTime),
+                            style: TextStyle(
+                                color: assetsColor.textResendOTPButtonPressed),
+                          ),
+                        ],
+                      )
                     : Text(
-                  'Kirim Ulang OTP',
-                  style:
-                  TextStyle(color: assetsColor.textResendOTPButton),
-                ),
+                        'Kirim Ulang OTP',
+                        style:
+                            TextStyle(color: assetsColor.textResendOTPButton),
+                      ),
               ),
             ),
 
@@ -250,91 +244,93 @@ class _OTPPagesState extends State<OTPPages> {
             ),
 
             /// AREA CONTENT BUTTON "Masuk dengan Google"
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                  child: Text(
-                    'Kode OTP tidak masuk? Gunakan cara lain',
-                    style: TextStyle(
-                        fontSize: 15, color: assetsColor.textOTPArea),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+                    child: Text(
+                      'Kode OTP tidak masuk? Gunakan cara lain',
+                      style: TextStyle(
+                          fontSize: 15, color: assetsColor.textOTPArea),
+                    ),
                   ),
-                ),
 
-                /// AREA BUTTON "Metode pengiriman OTP"
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
+                  /// AREA BUTTON "Metode pengiriman OTP"
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return ModalBottomOTPContent(
+                                    updateSelection:
+                                        (bool viaSMS, bool viaWhatsApp) {
+                                      setState(() {
+                                        sendOTPViaSMS = viaSMS;
+                                        sendOTPViaWhatsApp = viaWhatsApp;
+                                      });
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  assetsColor.buttonOtpMethodButton,
+                              side: BorderSide(
+                                  color: assetsColor.borderOtpMethodButton),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              context: context,
-                              builder: (BuildContext context) {
-                                return ModalBottomOTPContent(
-                                  updateSelection:
-                                      (bool viaSMS, bool viaWhatsApp) {
-                                    setState(() {
-                                      sendOTPViaSMS = viaSMS;
-                                      sendOTPViaWhatsApp = viaWhatsApp;
-                                    });
-                                  },
-                                );
-                              },
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                            assetsColor.buttonOtpMethodButton,
-                            side: BorderSide(
-                                color: assetsColor.borderOtpMethodButton),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 20.0),
-                                    child: Icon(
-                                      sendOTPViaWhatsApp
-                                          ? FontAwesomeIcons.whatsapp
-                                          : Icons.message_outlined,
-                                      color: sendOTPViaWhatsApp
-                                          ? Colors.lightGreen
-                                          : assetsColor.textOTPArea,
-                                      size: 20,
+                                  borderRadius: BorderRadius.circular(5.0)),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 20.0),
+                                      child: Icon(
+                                        sendOTPViaWhatsApp
+                                            ? FontAwesomeIcons.whatsapp
+                                            : Icons.message_outlined,
+                                        color: sendOTPViaWhatsApp
+                                            ? Colors.lightGreen
+                                            : assetsColor.textOTPArea,
+                                        size: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    sendOTPViaWhatsApp
-                                        ? 'OTP dikirim ke WhatsApp'
-                                        : 'OTP dikirim ke SMS',
-                                    style: TextStyle(
-                                        color: assetsColor.textOTPArea),
-                                  ),
-                                ],
-                              ),
-                              Icon(
-                                Icons.expand_more,
-                                color: assetsColor.textOTPArea,
-                              ),
-                            ],
+                                    Text(
+                                      sendOTPViaWhatsApp
+                                          ? 'OTP dikirim ke WhatsApp'
+                                          : 'OTP dikirim ke SMS',
+                                      style: TextStyle(
+                                          color: assetsColor.textOTPArea),
+                                    ),
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.expand_more,
+                                  color: assetsColor.textOTPArea,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                //
-              ],
+                    ],
+                  ),
+                  //
+                ],
+              ),
             ),
           ],
         ),

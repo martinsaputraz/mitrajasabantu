@@ -1,13 +1,9 @@
 class Constant {
   /// API
-  String loginApi = "/api/login";
-  String logoutApi = "/api/logout";
-  String changepinApi = "/api/changepin";
-  String changeprofileapi = "/api/changeprofile";
-  String registrasiHp = "/api/new_user";
-  String otpApi = "/api/users/otp";
-  String pin = "/api/pin";
-  String checkPhone = "/api/checkphone";
+  String loginApi = "";
+  String logoutApi = "";
+  String changepinApi = "";
+  String changeprofileapi = "";
 
   /// firebase options mobile
   String apiKey = 'AIzaSyD6XrVj2dkYC942CHBqK3-x56Yv3SC3yOg';
@@ -25,18 +21,6 @@ class Constant {
   String androidClientId = '';
   String iosClientId = '';
   String iosBundleId = '';
-
-  /// images assets
-  String imageSplash = 'assets/logo/logo_jasabantu.jpg';
-  String imageLogo = 'assets/logo/logo_jasabantu_bgwhite.jpg';
-  String imageSlider1 = 'assets/images/slideshow/slide_1.png';
-  String imageSlider2 = 'assets/images/slideshow/slide_2.png';
-  String imageSlider3 = 'assets/images/slideshow/slide_3.png';
-  String imageSlider4 = 'assets/images/slideshow/slide_2.png';
-  String imageSlider5 = 'assets/images/slideshow/slide_3.png';
-  String imagePin = 'assets/icon/Icon_NewPin.png';
-  String imagegoogle = 'assets/icon/Icon_Google.png';
-  String imageOnboarding = 'assets/logo/logo_jasabantu_cutting.jpg';
 
   ///Others
   String urlAPi = "https://bkgkgngv-5000.asse.devtunnels.ms/";

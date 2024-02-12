@@ -5,21 +5,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/FORGET_PIN/NewPIN.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/PINLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
-class OTPPagesFP extends StatefulWidget {
-  const OTPPagesFP({super.key});
+class OTPLogin extends StatefulWidget {
+  const OTPLogin({super.key});
 
   @override
-  State<OTPPagesFP> createState() => _OTPPagesFPState();
+  State<OTPLogin> createState() => _OTPLoginState();
 }
 
-class _OTPPagesFPState extends State<OTPPagesFP> {
+class _OTPLoginState extends State<OTPLogin> {
   //
 
   ///FOR 'OTP'
@@ -91,7 +91,7 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
             child: ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const NewPIN()));
+                    MaterialPageRoute(builder: (context) => const PINLogin()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: assetsColor.buttonHelpButton,
@@ -128,7 +128,8 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
             Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Text(
-                'Cek kotak pesan SMS kamu untuk melihat kode\nOTP yang kami kirimkan ke nomor',
+                'Cek kotak pesan SMS kamu untuk melihat kode\n'
+                'OTP yang kami kirimkan ke nomor',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15, color: assetsColor.textOTPArea),
               ),
@@ -136,7 +137,7 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
 
             /// PHONE TEXT
             Container(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
               child: Text(
                 '+62 818*****673',
                 textAlign: TextAlign.center,
@@ -183,7 +184,7 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
             ),
 
             Container(
-              padding: const EdgeInsets.fromLTRB(50, 30, 50, 0),
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
               child: ElevatedButton(
                 onPressed: () {
                   // Set state saat tombol ditekan
@@ -214,13 +215,13 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const CupertinoActivityIndicator(),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 5),
                           Text(
                             'Kirim Ulang',
                             style: TextStyle(
                                 color: assetsColor.textResendOTPButtonPressed),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 5),
                           Text(
                             _formatDuration(remainingTime),
                             style: TextStyle(
@@ -245,7 +246,7 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
                     child: Text(
                       'Kode OTP tidak masuk? Gunakan cara lain',
                       style: TextStyle(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/DiscountCard.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/GridMenu.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/MyCurrentLocation.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderImages.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
@@ -99,16 +100,16 @@ class _HomePagesState extends State<HomePages> {
         cacheExtent: 100.0,
         children: const [
           /// MY CURRENT LOCATION
-          // MyCurrentLocation(),
+          MyCurrentLocation(),
 
           /// SLIDER ADS IMAGES
-          // SliderImages(),
+          SliderImages(),
 
           /// PROMO CARD
           DiscountCard(),
 
           /// GRID MENU
-          // GridMenu(),
+          GridMenu(),
 
           ///
 
