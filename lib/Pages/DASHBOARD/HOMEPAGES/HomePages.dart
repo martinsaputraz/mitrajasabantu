@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/DiscountCard.dart';
 import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 
-Constant constants = Constant();
+
 AssetsColor assetsColor = AssetsColor();
 
 class HomePages extends StatefulWidget {
@@ -17,18 +17,22 @@ class _HomePagesState extends State<HomePages> {
   /// FOR "SEARCH"
   TextEditingController searchController = TextEditingController();
 
+  ///
+  int itemCount = 4;
+
   @override
   Widget build(BuildContext context) {
+    final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          backgroundColor: Colors.lightGreen,
           automaticallyImplyLeading: false,
           leading: IconButton(
             icon: const Icon(
-              Icons.document_scanner_outlined,
-              color: Colors.white,
+              Icons.qr_code_scanner,
+              color: Colors.black45,
             ),
             onPressed: () {
               //
@@ -42,8 +46,7 @@ class _HomePagesState extends State<HomePages> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.white),
+                    color: Colors.black12,
                   ),
                   child: TextField(
                     controller: searchController,
@@ -63,48 +66,54 @@ class _HomePagesState extends State<HomePages> {
               onPressed: () {},
               icon: const Icon(
                 Icons.local_mall_outlined,
-                color: Colors.white,
+                color: Colors.black45,
               ),
             ),
             IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.receipt_outlined,
-                color: Colors.white,
+                color: Colors.black45,
               ),
             ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: const Icon(
+            //     Icons.notifications,
+            //     color: Colors.black45,
+            //   ),
+            // ),
             IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.menu_outlined,
-                color: Colors.white,
+                color: Colors.black45,
               ),
             ),
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            /// SLIDE SHOW
+      body: ListView(
+        shrinkWrap: true,
+        addAutomaticKeepAlives: false,
+        cacheExtent: 100.0,
+        children: const [
+          /// MY CURRENT LOCATION
+          // MyCurrentLocation(),
 
-            /// CATEGORY MENU
+          /// SLIDER ADS IMAGES
+          // SliderImages(),
 
-            /// ADS BANNER
-            /// HORIZONTAL PAGE VIEW
-            /// "REKOMENDASI" HORIZONTAL PAGE VIEW
-            /// "JASA DISEKITAR" HORIZONTAL PAGE VIEW
-            /// "VENDOR" HORIZONTAL PAGE VIEW
-            /// "ADS DISCOUNT" HORIZONTAL PAGE VIEW
-            Container(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: const DiscountCard(),
-            ),
+          /// PROMO CARD
+          DiscountCard(),
 
-            /// ARTICLE
-            /// BANTUAN
-          ],
-        ),
+          /// GRID MENU
+          // GridMenu(),
+
+          ///
+
+          //
+        ],
       ),
     );
   }
