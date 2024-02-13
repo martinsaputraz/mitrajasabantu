@@ -2,11 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/InputName.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
 AssetsColor assetsColor = AssetsColor();
+LogicApi logicApi = LogicApi();
 
 class SettingPIN extends StatefulWidget {
   const SettingPIN({super.key});
@@ -123,11 +125,27 @@ class _SettingPINState extends State<SettingPIN> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    String textToRotate = "123451:Welhan:6281296023051";
+                    String rotatedText = Rotasi.rotateText(textToRotate, 15);
+                    print("Rotated Text: $rotatedText");
+
+                    String reversedText =
+                        Rotasi.reverseRotateText(rotatedText, 15);
+                    print("Reversed Text: $reversedText");
+
+                    /*          String data_nilai = base64Encode(utf8
+                        .encode('${"123451"}:${"Welhan"}:${"6281296023051"}'));
+
+
+
+                    print(data_nilai);*/
+
+                    logicApi.login();
+                    /*      Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const InputName()),
-                    );
+                    );*/
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: assetsColor.buttonSavePIN,

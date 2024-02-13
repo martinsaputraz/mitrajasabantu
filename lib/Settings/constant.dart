@@ -27,7 +27,7 @@ class Constant {
   String iosBundleId = '';
 
   ///Others
-  String urlAPi = "https://bkgkgngv-5000.asse.devtunnels.ms/";
+  String urlAPi = "https://3664-103-151-94-164.ngrok-free.app/";
   String namaPT = "PT. Jasa Bantu Indonesia";
 
   ///Teks Slider Atas
@@ -46,4 +46,6 @@ class Constant {
   String teks4SliderBawah = "Sliding with animation";
   String teks5SliderBawah =
       "Where everything is possible and customize your onboarding.";
+
+  String ROT_KEY = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ@#\$-:0123456789";
 }

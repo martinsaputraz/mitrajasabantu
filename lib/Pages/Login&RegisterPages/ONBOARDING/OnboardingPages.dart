@@ -28,12 +28,14 @@ class _OnboardingPagesState extends State<OnboardingPages> {
       backgroundColor: assetsColor.bgOnboardingPages,
       body: Column(
         children: [
+
           /// LOGO COMPANY & BUTTON "BAHASA"
           Container(
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 /// IMAGE LOGO
                 Container(
                   child: Image.asset(
@@ -67,7 +69,10 @@ class _OnboardingPagesState extends State<OnboardingPages> {
 
           /// SLIDE SHOW
           Container(
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.5,
             child: const OnboardingContent(),
           ),
 
@@ -82,7 +87,10 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                 child: Container(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+
+
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonLoginwithGoogle,
                       shape: RoundedRectangleBorder(
@@ -145,6 +153,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 /// BUTTTON "MASUK"
                 Expanded(
                   child: Container(

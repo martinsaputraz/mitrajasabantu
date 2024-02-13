@@ -1,10 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
 
 AssetsColor assetsColor = AssetsColor();
+LogicApi logicApi = LogicApi();
 
 class LoginPages extends StatefulWidget {
   const LoginPages({super.key});
@@ -16,7 +18,10 @@ class LoginPages extends StatefulWidget {
 class _LoginPagesState extends State<LoginPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
+/*
   final TextEditingController _phoneNumber = TextEditingController();
+*/
+  String phoneNumber = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +35,7 @@ class _LoginPagesState extends State<LoginPages> {
           style: TextStyle(fontSize: 20, color: assetsColor.textLoginArea),
         ),
       ),
-      body:
-          // SingleChildScrollView(
-          //   child:
-          Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -72,7 +74,7 @@ class _LoginPagesState extends State<LoginPages> {
           ),
 
           /// "PHONE" TEXT FIELDS
-          Container(
+          /*       Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
             child: Center(
               child: TextField(
@@ -84,7 +86,32 @@ class _LoginPagesState extends State<LoginPages> {
                     labelText: 'Nomor Handphone',
                     prefixIcon:
                         Icon(Icons.phone, color: assetsColor.textLoginArea),
-                    prefixText: '+62 '),
+                    prefixText: '+62'),
+              ),
+            ),
+          ),*/
+
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+            child: Center(
+              child: IntlPhoneField(
+                decoration: InputDecoration(
+                  labelText: 'Nomor Handphone',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon:
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
+                ),
+                initialCountryCode: 'ID',
+                // Set the initial country code to Indonesia
+                // Limit selection to Indonesia
+                onChanged: (phone) {
+                  setState(() {
+                    phoneNumber = phone.completeNumber;
+                  });
+                  print(phone.completeNumber);
+                },
               ),
             ),
           ),
@@ -204,11 +231,18 @@ class _LoginPagesState extends State<LoginPages> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const OTPLogin()),
-                      );
+/*
+
+                      String phoneNumber = _phoneNumber.text;
+*/
+                      if (phoneNumber.startsWith('+')) {
+                        phoneNumber =
+                            phoneNumber.substring(1); // Remove the leading '+'
+                      }
+                      print(phoneNumber);
+/*
+                      logicApi.checkPhone(context, phone);
+*/
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

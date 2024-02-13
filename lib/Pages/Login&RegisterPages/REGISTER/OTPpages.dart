@@ -45,17 +45,19 @@ class _OTPPagesState extends State<OTPPages> {
     super.initState();
 
     // Set waktu akhir, contoh 1 menit dari waktu sekarang
-    endTime = DateTime.now().add(const Duration(minutes: 1));
+    endTime = DateTime.now().add(const Duration(minutes: 5));
 
     // Mulai timer mundur
-    timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
-      setState(() {});
-    });
+/*    timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
+      setState(() {
+
+      });
+    })*/;
   }
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) {
-      if (n >= 10) return "$n";
+      if (n <= 10) return "$n";
       return "0$n";
     }
 
@@ -114,6 +116,7 @@ class _OTPPagesState extends State<OTPPages> {
       body: Center(
         child: Column(
           children: [
+
             /// TITLE TEXT
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -131,7 +134,7 @@ class _OTPPagesState extends State<OTPPages> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Text(
                 'Cek kotak pesan SMS kamu untuk melihat kode\n'
-                'OTP yang kami kirimkan ke nomor',
+                    'OTP yang kami kirimkan ke nomor',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15, color: assetsColor.textOTPArea),
               ),
@@ -161,7 +164,10 @@ class _OTPPagesState extends State<OTPPages> {
                     obscureText: true,
                     keyboardType: TextInputType.number,
                     length: 6,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldWidth: 40,
                     fieldStyle: FieldStyle.box,
@@ -214,28 +220,28 @@ class _OTPPagesState extends State<OTPPages> {
                 ),
                 child: isResendOTPPressed
                     ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CupertinoActivityIndicator(),
-                          const SizedBox(width: 5),
-                          Text(
-                            'Kirim Ulang',
-                            style: TextStyle(
-                                color: assetsColor.textResendOTPButtonPressed),
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            _formatDuration(remainingTime),
-                            style: TextStyle(
-                                color: assetsColor.textResendOTPButtonPressed),
-                          ),
-                        ],
-                      )
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CupertinoActivityIndicator(),
+                    const SizedBox(width: 5),
+                    Text(
+                      'Kirim Ulang',
+                      style: TextStyle(
+                          color: assetsColor.textResendOTPButtonPressed),
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      _formatDuration(remainingTime),
+                      style: TextStyle(
+                          color: assetsColor.textResendOTPButtonPressed),
+                    ),
+                  ],
+                )
                     : Text(
-                        'Kirim Ulang OTP',
-                        style:
-                            TextStyle(color: assetsColor.textResendOTPButton),
-                      ),
+                  'Kirim Ulang OTP',
+                  style:
+                  TextStyle(color: assetsColor.textResendOTPButton),
+                ),
               ),
             ),
 
@@ -284,7 +290,7 @@ class _OTPPagesState extends State<OTPPages> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  assetsColor.buttonOtpMethodButton,
+                              assetsColor.buttonOtpMethodButton,
                               side: BorderSide(
                                   color: assetsColor.borderOtpMethodButton),
                               shape: RoundedRectangleBorder(
@@ -297,7 +303,7 @@ class _OTPPagesState extends State<OTPPages> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(right: 20.0),
+                                      const EdgeInsets.only(right: 20.0),
                                       child: Icon(
                                         sendOTPViaWhatsApp
                                             ? FontAwesomeIcons.whatsapp
