@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:jasa_bantu/Settings/logicapi.dart';
 
@@ -26,7 +27,7 @@ class _LoginPagesState extends State<LoginPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: assetsColor.bgLoginPages,
       appBar: AppBar(
         backgroundColor: assetsColor.bgLoginPages,
@@ -41,7 +42,7 @@ class _LoginPagesState extends State<LoginPages> {
         children: [
           /// LOGO JASA BANTU BG WHITE
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: Image.asset(
               assetsLogo.jbLogoBGWhite,
               width: 115,
@@ -63,7 +64,7 @@ class _LoginPagesState extends State<LoginPages> {
 
           /// SUB TITLE TEXT
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
             child: Text(
               'Selamat datang kembali!',
               style: TextStyle(
@@ -92,7 +93,7 @@ class _LoginPagesState extends State<LoginPages> {
           ),*/
 
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
             child: Center(
               child: IntlPhoneField(
                 decoration: InputDecoration(
@@ -110,8 +111,9 @@ class _LoginPagesState extends State<LoginPages> {
                   setState(() {
                     phoneNumber = phone.completeNumber;
                   });
-                  print(phone.completeNumber);
+                  print(phoneNumber);
                 },
+                inputFormatters: [],
               ),
             ),
           ),
@@ -243,6 +245,11 @@ class _LoginPagesState extends State<LoginPages> {
 /*
                       logicApi.checkPhone(context, phone);
 */
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DashboardPages()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
@@ -16,7 +17,8 @@ class RegisterPages extends StatefulWidget {
 class _RegisterPagesState extends State<RegisterPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
-  final TextEditingController _phoneNumber = TextEditingController();
+  // TextEditingController _phoneNumber = TextEditingController();
+  String phoneNumberRegis = "";
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           ),
 
           /// "PHONE" TEXT FIELDS
-          Container(
+          /*Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
             child: Center(
               child: TextField(
@@ -82,6 +84,31 @@ class _RegisterPagesState extends State<RegisterPages> {
                     prefixIcon:
                         Icon(Icons.phone, color: assetsColor.textRegisterArea),
                     prefixText: '+62 '),
+              ),
+            ),
+          ),*/
+
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Center(
+              child: IntlPhoneField(
+                decoration: InputDecoration(
+                  labelText: 'Nomor Handphone',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon:
+                  Icon(Icons.phone, color: assetsColor.textLoginArea),
+                ),
+                initialCountryCode: 'ID',
+                // Set the initial country code to Indonesia
+                // Limit selection to Indonesia
+                onChanged: (phone) {
+                  setState(() {
+                    phoneNumberRegis = phone.completeNumber;
+                  });
+                  print(phone.completeNumber);
+                },
               ),
             ),
           ),

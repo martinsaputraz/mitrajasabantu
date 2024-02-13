@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Pages/StarterPages/SplashScreen.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/assets/AssetsColor.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 void main() async {

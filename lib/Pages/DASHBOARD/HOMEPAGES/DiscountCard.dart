@@ -1,201 +1,260 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
 class DiscountCard extends StatefulWidget {
-  const DiscountCard({super.key});
+  const DiscountCard({Key? key}) : super(key: key);
 
   @override
   State<DiscountCard> createState() => _DiscountCardState();
 }
 
 class _DiscountCardState extends State<DiscountCard> {
+  TextEditingController searchController = TextEditingController();
+
+  List<Map<String, dynamic>> cardDataList = [
+    {
+      'title': 'Express Elite',
+      'location': 'Jakarta Barat',
+      'serviceName': 'Jasa Foto Produk Profesional',
+      'price': '80.000',
+      'discountPercentage': '74%',
+      'discountedPrice': '355.000',
+      'rating': '4.8',
+      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+    },
+    {
+      'title': 'Zenith Group Innovation',
+      'location': 'Tangerang Selatan',
+      'serviceName': 'Konsultasi Desain Rumah',
+      'price': '150.000',
+      'discountPercentage': '43%',
+      'discountedPrice': '275.000',
+      'rating': '4.9',
+      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+    },
+    {
+      'title': 'Sonic Flare',
+      'location': 'Bekasi Barat',
+      'serviceName': 'Perawatan Wajah & Kuku',
+      'price': '2.750.000',
+      'discountPercentage': '55%',
+      'discountedPrice': '5.200.000',
+      'rating': '4.7',
+      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+    },
+    // Add more data entries as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> cardData = [
-      {
-        'bannerImage': 'assets/banner1.jpg',
-        'profileImage': 'assets/profile1.jpg',
-        'rating': 4.8,
-        'storeName': 'Store ABC',
-        'verified': true,
-        'location': 'New York, USA',
-        'title': 'Product Title 1',
-        'price': '\$50',
-        'discountText': '20% Off',
-        'originalPrice': '\$60',
-      },
-      {
-        'bannerImage': 'assets/banner2.jpg',
-        'profileImage': 'assets/profile2.jpg',
-        'rating': 4.5,
-        'storeName': 'Store XYZ',
-        'verified': false,
-        'location': 'Paris, France',
-        'title': 'Product Title 2',
-        'price': '\$30',
-        'discountText': '10% Off',
-        'originalPrice': '\$35',
-      },
-    ];
-
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: cardData.length,
-      itemBuilder: (context, index) {
-        return CardWidget(
-          bannerImage: cardData[index]['bannerImage'],
-          profileImage: cardData[index]['profileImage'],
-          rating: cardData[index]['rating'],
-          storeName: cardData[index]['storeName'],
-          verified: cardData[index]['verified'],
-          location: cardData[index]['location'],
-          title: cardData[index]['title'],
-          price: cardData[index]['price'],
-          discountText: cardData[index]['discountText'],
-          originalPrice: cardData[index]['originalPrice'],
-        );
-      },
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    cardDataList.length,
+                        (index) => Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: CardWidget(cardData: cardDataList[index]),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
 class CardWidget extends StatelessWidget {
-  final String bannerImage;
-  final String profileImage;
-  final double rating;
-  final String storeName;
-  final bool verified;
-  final String location;
-  final String title;
-  final String price;
-  final String discountText;
-  final String originalPrice;
+  final Map<String, dynamic> cardData;
 
-  CardWidget({
-    super.key,
-    required this.bannerImage,
-    required this.profileImage,
-    required this.rating,
-    required this.storeName,
-    required this.verified,
-    required this.location,
-    required this.title,
-    required this.price,
-    required this.discountText,
-    required this.originalPrice,
-  });
+  CardWidget({Key? key, required this.cardData}) : super(key: key);
+
+  bool showImage = true;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300.0,
-      margin: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5.0,
-            spreadRadius: 2.0,
-          ),
-        ],
-      ),
-      child: Stack(
-        children: <Widget>[
-          // Banner Image
-          Image.asset(
-            bannerImage,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            height: 150.0,
-          ),
-          // Profile Image
-          Positioned(
-            top: 16.0,
-            left: 16.0,
-            child: CircleAvatar(
-              backgroundImage: AssetImage(profileImage),
-              radius: 20.0,
-            ),
-          ),
-          // Content
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Informasi Toko
-                Row(
-                  children: <Widget>[
-                    // Nama Toko dan Lokasi
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          storeName,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            const Icon(
-                              Icons.location_on,
-                              size: 16.0,
-                              color: Colors.grey,
-                            ),
-                            const SizedBox(width: 4.0),
-                            Text(location),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    // Verified dan Rating
-                    if (verified)
-                      const Icon(
-                        Icons.verified,
-                        color: Colors.green,
-                      ),
-                    const SizedBox(width: 4.0),
-                    Text(
-                      'Rating: $rating',
-                      style: const TextStyle(fontSize: 12.0),
-                    ),
-                  ],
-                ),
-                // Judul Produk
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4.0),
-                // Harga dan Diskon
-                Text(
-                  "Mulai dari\n$price /pcs",
-                  style: const TextStyle(
-                    color: Colors.deepOrangeAccent,
-                    fontWeight: FontWeight.bold,
+    return Card(
+      child: Container(
+        constraints: const BoxConstraints(
+          maxHeight: 350,
+          maxWidth: 200,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    cardData['imagePath'],
+                    height: 100,
+                    width: 200,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(height: 4.0),
-                Text(
-                  discountText,
-                  style: const TextStyle(color: Colors.deepOrangeAccent),
+                Container(
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(3, 3, 10, 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: const Radius.circular(10),
+                        bottomRight: const Radius.circular(10),
+                      ),
+                      color: Colors.purpleAccent,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: const [
+                        Icon(Icons.star, color: Colors.white),
+                        SizedBox(width: 5),
+                        Text('4.8', style: TextStyle(color: Colors.white)),
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 4.0),
-                Text(
-                  originalPrice,
-                  style: const TextStyle(
-                    decoration: TextDecoration.lineThrough,
-                    color: Colors.grey,
+                Container(
+                  padding: const EdgeInsets.only(left: 10, top: 40),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.brown.shade800,
+                    backgroundImage:
+                    showImage ? AssetImage(cardData['imagePath']) : null,
+                    child: showImage ? null : const Text('EP'),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Flexible(
+                      child: Text(
+                        cardData['title'],
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Icon(
+                    CupertinoIcons.checkmark_seal_fill,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                cardData['location'],
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: Flexible(
+                child: Text(
+                  cardData['serviceName'],
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: const Text(
+                'Mulai dari',
+                style: TextStyle(color: Colors.black45, fontSize: 15),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Text(
+                    'Rp${cardData['price']}',
+                    style: const TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    ' /pcs',
+                    style: TextStyle(
+                      color: Colors.black45,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.percent_rounded,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    cardData['discountPercentage'],
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    'Rp${cardData['discountedPrice']}',
+                    style: const TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      color: Colors.black45,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

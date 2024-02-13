@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/background.dart';
 import 'package:flutter_onboarding_slider/background_body.dart';
 import 'package:flutter_onboarding_slider/page_offset_provider.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
+import 'package:jasa_bantu/assets/AssetsColor.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
