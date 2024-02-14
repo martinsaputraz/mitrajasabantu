@@ -137,9 +137,8 @@ class _ModalBottomOTPContentState extends State<ModalBottomOTPContent> {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  if (_sendOTPViaSMS || _sendOTPViaWhatsApp) {
-                    Navigator.pop(context);
-                  }
+                  if (_sendOTPViaSMS == true) {
+                  } else if (_sendOTPViaWhatsApp == true) {}
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: assetsColor.buttonSendOTPCode,

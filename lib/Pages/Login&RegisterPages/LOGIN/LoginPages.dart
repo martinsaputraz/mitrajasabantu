@@ -22,6 +22,7 @@ class _LoginPagesState extends State<LoginPages> {
 /*
   final TextEditingController _phoneNumber = TextEditingController();
 */
+
   String phoneNumber = "";
 
   @override

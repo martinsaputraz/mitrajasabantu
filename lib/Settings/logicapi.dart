@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/RegisterPages.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,7 +43,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const OTPLogin()),
-            (Route<dynamic> route) => false);
+                (Route<dynamic> route) => false);
       }
     } else if (response.statusCode == 303) {
       var jsonResponse = json.decode(response.body);
@@ -56,7 +59,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const LoginPages()),
-            (Route<dynamic> route) => false);
+                (Route<dynamic> route) => false);
       }
     }
   }
@@ -133,50 +136,6 @@ class LogicApi {
         sharedPreferences.setString(
             "KEY_MASUK", jsonResponse['status'] ?? "null");
 
-/*
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (BuildContext context) => const Dashboard()),
-              (Route<dynamic> route) => false);*/
-      }
-    } else if (response.statusCode == 202) {
-      var jsonResponse = json.decode(response.body);
-
-      if (jsonResponse != null) {
-        statusresponse = jsonResponse['status'];
-        messageresponse = jsonResponse['message'];
-      }
-
-      if (statusresponse == "failed") {
-/*
-      Utils.showAlertDialog(context, messageResponse);
-*/
-      }
-    }
-  }
-
-  sendOTP(context, String phone, String type) async {
-    Map data = {
-      'phone': phone,
-      'type': type,
-    };
-
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    String uri = constant.urlAPi;
-    Uri uriValue = Uri.parse(uri);
-
-    var response = await http.post(uriValue, body: data);
-
-    if (response.statusCode == 200) {
-      var jsonResponse = json.decode(response.body);
-
-      if (jsonResponse != null) {
-        statusresponse = jsonResponse['status'];
-        messageresponse = jsonResponse['message'];
-      }
-
-      if (statusresponse == "success") {
 /*
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
@@ -293,6 +252,170 @@ class LogicApi {
       print('Token: ${jsonDecode(response.body)['data']}');
     } else {
       print('Failed to login');
+    }
+  }
+
+  ///Send Otp
+  sendOTPDefault(context, String phone) async {
+    final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
+    Map<String, dynamic> data = {
+      'phone': phone,
+    };
+
+    String uri = constant.urlAPi + constant.RequestOTP;
+    Uri uriValue = Uri.parse(uri);
+
+    try {
+      var response = await http.post(
+        uriValue,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(data),
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+
+        if (statusresponse == "success") {
+          await secureStorage.write(key: 'nomorHp', value: phone);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const OTPPages()),
+          );
+        }
+      } else if (response.statusCode == 202) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+
+        if (statusresponse == "failed") {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      RegisterPages(message: messageresponse)),
+                  (Route<dynamic> route) => true);
+        }
+      } else if (response.statusCode == 400) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+      }
+    } catch (e) {
+      print('Error during OTP request: $e');
+      // Handle the error as needed
+    }
+  }
+
+  sendOTPDefault2(context, String phone) async {
+    Map<String, dynamic> data = {
+      'phone': phone,
+    };
+
+    String uri = constant.urlAPi + constant.RequestOTP;
+    Uri uriValue = Uri.parse(uri);
+
+    var response = await http.post(
+      uriValue,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(data),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+    } else if (response.statusCode == 303) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+    } else if (response.statusCode == 400) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+    }
+  }
+
+  sendOTPCustom(context, String phone, String type) async {
+    Map data = {
+      'phone': phone,
+      'type': type,
+    };
+
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    String uri = constant.urlAPi;
+    Uri uriValue = Uri.parse(uri);
+
+    var response = await http.post(uriValue, body: data);
+
+    if (response.statusCode == 200) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+
+      if (statusresponse == "success") {
+/*
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const Dashboard()),
+              (Route<dynamic> route) => false);*/
+      }
+    } else if (response.statusCode == 202) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+
+      if (statusresponse == "failed") {
+/*
+      Utils.showAlertDialog(context, messageResponse);
+*/
+      }
+    }
+  }
+
+  ///verify OTp
+  Future<void> verifyOTPRegistrasi(String hasilEncode) async {
+    final response = await http.post(
+      Uri.parse(constant.urlAPi + constant.verifyOTP),
+      // Ganti URL dengan URL endpoint Flask Anda
+
+      headers: {'Authorization': 'Bearer $hasilEncode'},
+    );
+
+    print(hasilEncode);
+    if (response.statusCode == 200) {
+      print('Login successful');
+      print('Token: ${jsonDecode(response.body)['data']}');
+    }
+    else if (response.statusCode == 400) {
+      print('message: ${jsonDecode(response.body)['message']}');
     }
   }
 }

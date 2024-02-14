@@ -14,12 +14,15 @@ class Securestorage {
     String? pin = await secureStorage.read(key: 'pin') ?? '';
     String? screatelkey = await secureStorage.read(key: 'screatelkey') ?? "AbC";
     String uniqueID = await secureStorage.read(key: 'uniqueID') ?? '';
+    String? noHp = await secureStorage.read(key: 'nomorHp') ?? '';
+
 
     return {
       'token': token,
       'pin': pin,
       'screatelkey': screatelkey,
       'uniqueID': uniqueID,
+      'nomorHp': noHp,
     };
   }
 
@@ -31,6 +34,7 @@ class Securestorage {
       await _storage.delete(key: "token");
       await _storage.delete(key: "pin");
       await _storage.delete(key: "uniqueID");
+      await _storage.delete(key: "nomorHp");
 
       // Navigate to the onboarding pages
       Navigator.of(currentContext).pushAndRemoveUntil(

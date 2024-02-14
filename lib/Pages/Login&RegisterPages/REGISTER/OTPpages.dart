@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/SettingPIN.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -24,6 +26,12 @@ class _OTPPagesState extends State<OTPPages> {
 
   ///FOR 'OTP'
   OtpFieldController otpController = OtpFieldController();
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
+  String? storedNoHp;
+  String rotatedText = "";
+  String textRotate = "";
+  String data_nilai = "";
 
   /// FOR BUTTON "RESEND OTP"
   bool isResendOTPPressed = false;
@@ -47,12 +55,25 @@ class _OTPPagesState extends State<OTPPages> {
     // Set waktu akhir, contoh 1 menit dari waktu sekarang
     endTime = DateTime.now().add(const Duration(minutes: 5));
 
+    getStoredNoHp();
+
     // Mulai timer mundur
 /*    timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
       setState(() {
 
       });
-    })*/;
+    })*/
+    ;
+  }
+
+  Future<void> getStoredNoHp() async {
+    // Retrieve the phone number (noHp) from secure storage
+    String? noHp = await secureStorage.read(key: 'nomorHp');
+
+    setState(() {
+      storedNoHp = noHp;
+      print(storedNoHp);
+    });
   }
 
   String _formatDuration(Duration duration) {
@@ -92,10 +113,10 @@ class _OTPPagesState extends State<OTPPages> {
             padding: const EdgeInsets.only(right: 30),
             child: ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(
+                /*        Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingPIN()));
+                        builder: (context) => const SettingPIN()));*/
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: assetsColor.buttonHelpButton,
@@ -116,7 +137,6 @@ class _OTPPagesState extends State<OTPPages> {
       body: Center(
         child: Column(
           children: [
-
             /// TITLE TEXT
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -134,7 +154,7 @@ class _OTPPagesState extends State<OTPPages> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Text(
                 'Cek kotak pesan SMS kamu untuk melihat kode\n'
-                    'OTP yang kami kirimkan ke nomor',
+                'OTP yang kami kirimkan ke nomor',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15, color: assetsColor.textOTPArea),
               ),
@@ -164,26 +184,24 @@ class _OTPPagesState extends State<OTPPages> {
                     obscureText: true,
                     keyboardType: TextInputType.number,
                     length: 6,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    width: MediaQuery.of(context).size.width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldWidth: 40,
                     fieldStyle: FieldStyle.box,
                     outlineBorderRadius: 5,
                     style: const TextStyle(fontSize: 15),
                     onChanged: (pin) {
-                      if (kDebugMode) {
-                        print("Changed: $pin");
-                      }
-                      // if (pin.isEmpty) {
-                      //   FocusScope.of(context).previousFocus();
-                      // }
-                    },
-                    onCompleted: (pin) {
-                      if (kDebugMode) {
-                        print("Completed: $pin");
+                      setState(() {
+                        textRotate =
+                            storedNoHp! + constant.delimeterRegistration + pin;
+
+                        rotatedText = Rotasi.rotateText(textRotate, 15);
+
+                        data_nilai = base64Encode(utf8.encode(rotatedText));
+                      });
+
+                      if (pin.length == 6) {
+                        logicApi.verifyOTPRegistrasi(data_nilai);
                       }
                     },
                   ),
@@ -220,28 +238,28 @@ class _OTPPagesState extends State<OTPPages> {
                 ),
                 child: isResendOTPPressed
                     ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CupertinoActivityIndicator(),
-                    const SizedBox(width: 5),
-                    Text(
-                      'Kirim Ulang',
-                      style: TextStyle(
-                          color: assetsColor.textResendOTPButtonPressed),
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      _formatDuration(remainingTime),
-                      style: TextStyle(
-                          color: assetsColor.textResendOTPButtonPressed),
-                    ),
-                  ],
-                )
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CupertinoActivityIndicator(),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Kirim Ulang',
+                            style: TextStyle(
+                                color: assetsColor.textResendOTPButtonPressed),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            _formatDuration(remainingTime),
+                            style: TextStyle(
+                                color: assetsColor.textResendOTPButtonPressed),
+                          ),
+                        ],
+                      )
                     : Text(
-                  'Kirim Ulang OTP',
-                  style:
-                  TextStyle(color: assetsColor.textResendOTPButton),
-                ),
+                        'Kirim Ulang OTP',
+                        style:
+                            TextStyle(color: assetsColor.textResendOTPButton),
+                      ),
               ),
             ),
 
@@ -290,7 +308,7 @@ class _OTPPagesState extends State<OTPPages> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                              assetsColor.buttonOtpMethodButton,
+                                  assetsColor.buttonOtpMethodButton,
                               side: BorderSide(
                                   color: assetsColor.borderOtpMethodButton),
                               shape: RoundedRectangleBorder(
@@ -303,7 +321,7 @@ class _OTPPagesState extends State<OTPPages> {
                                   children: [
                                     Padding(
                                       padding:
-                                      const EdgeInsets.only(right: 20.0),
+                                          const EdgeInsets.only(right: 20.0),
                                       child: Icon(
                                         sendOTPViaWhatsApp
                                             ? FontAwesomeIcons.whatsapp

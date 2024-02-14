@@ -3,22 +3,39 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
 class RegisterPages extends StatefulWidget {
-  const RegisterPages({super.key});
+  final String message; // Deklarasi variabel message
+
+  const RegisterPages({Key? key, required this.message}) : super(key: key);
 
   @override
   State<RegisterPages> createState() => _RegisterPagesState();
 }
+
+LogicApi logicApi = LogicApi();
 
 class _RegisterPagesState extends State<RegisterPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
   // TextEditingController _phoneNumber = TextEditingController();
   String phoneNumberRegis = "";
+  String phoneNumber = "";
+
+  String messagecheck = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    setState(() {
+      messagecheck = widget.message;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +115,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                     borderSide: BorderSide(),
                   ),
                   prefixIcon:
-                  Icon(Icons.phone, color: assetsColor.textLoginArea),
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
                 ),
                 initialCountryCode: 'ID',
                 // Set the initial country code to Indonesia
@@ -112,6 +129,17 @@ class _RegisterPagesState extends State<RegisterPages> {
               ),
             ),
           ),
+
+          if (messagecheck != null)
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Text(
+                messagecheck!,
+                style: TextStyle(
+                  color: Colors.red, // Warna teks merah
+                ),
+              ),
+            ),
 
           Expanded(
             child: Container(),
@@ -258,11 +286,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const OTPPages()),
-                      );
+                      if (phoneNumberRegis == "") {
+                      } else {
+                        if (phoneNumberRegis.startsWith('+')) {
+                          phoneNumber = phoneNumberRegis
+                              .substring(1); // Remove the leading '+'
+                        }
+                        logicApi.sendOTPDefault(context, phoneNumber);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,
