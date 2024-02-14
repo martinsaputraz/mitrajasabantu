@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
+import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
@@ -12,9 +17,31 @@ class InputName extends StatefulWidget {
 }
 
 class _InputNameState extends State<InputName> {
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  Constant constant = Constant();
+
   //
   /// FOR 'NAMA'
   final TextEditingController _inputName = TextEditingController();
+  String? ID;
+
+  String? storedNoHp;
+  String rotatedText = "";
+  String textRotate = "";
+  String data_nilai = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getStorageID();
+    super.initState();
+  }
+
+  Future<void> getStorageID() async {
+    // Retrieve the phone number (noHp) from secure storage
+    ID = await secureStorage.read(key: 'ID');
+    storedNoHp = await secureStorage.read(key: 'nomorHp');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +121,18 @@ class _InputNameState extends State<InputName> {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DashboardPages()),
-                  );
+                  if (_inputName.text == "") {
+                    print("HELO WORLD");
+                  } else {
+                    setState(() {
+                      textRotate =
+                          ID! + constant.delimeterRegistration + storedNoHp!;
+
+                      rotatedText = Rotasi.rotateText(textRotate, 15);
+                      data_nilai = base64Encode(utf8.encode(rotatedText));
+                    });
+                    logicApi.setName(context, _inputName.text, data_nilai);
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: assetsColor.buttonNextRegister,

@@ -72,7 +72,6 @@ class _OTPPagesState extends State<OTPPages> {
 
     setState(() {
       storedNoHp = noHp;
-      print(storedNoHp);
     });
   }
 
@@ -201,7 +200,7 @@ class _OTPPagesState extends State<OTPPages> {
                       });
 
                       if (pin.length == 6) {
-                        logicApi.verifyOTPRegistrasi(data_nilai);
+                        logicApi.verifyOTPRegistrasi(context, data_nilai);
                       }
                     },
                   ),

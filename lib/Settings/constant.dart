@@ -3,8 +3,8 @@ class Constant {
   String loginApiByphone = "/loginByPhone";
   String loginAPIBYemail = "/loginByEmail";
   String checkPin = "/loginPin";
-  String setName = "/api/set_profile";
-  String setPin = "api/set_pin";
+  String setName = "/api/users/set_profile";
+  String setPin = "/api/users/set_pin";
   String RequestOTP = "/api/new_users";
   String verifyOTP = "/api/users/otp";
   String logoutApi = "";
@@ -48,7 +48,7 @@ class Constant {
       "Where everything is possible and customize your onboarding.";
 
   String ROT_KEY =
-      "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ@#\$-:0123456789";
+      "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ@#\$_-&%:0123456789";
 
   String flagWa = "WA";
   String flagSms = "SMS";

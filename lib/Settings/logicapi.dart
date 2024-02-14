@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/InputName.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/RegisterPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/SettingPIN.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +20,8 @@ class LogicApi {
   String statusresponse = "";
   String messageresponse = "";
   String koneksiresponse = "";
+  String token = "";
+  String ID = "";
   String authorizationToken = 'MTIzNDUxOldlbGhhbjo2MjgxMjk2MDIzMDUx';
 
   ///logicAPI
@@ -43,7 +48,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const OTPLogin()),
-                (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
       }
     } else if (response.statusCode == 303) {
       var jsonResponse = json.decode(response.body);
@@ -59,7 +64,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const LoginPages()),
-                (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
       }
     }
   }
@@ -302,7 +307,7 @@ class LogicApi {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       RegisterPages(message: messageresponse)),
-                  (Route<dynamic> route) => true);
+              (Route<dynamic> route) => true);
         }
       } else if (response.statusCode == 400) {
         var jsonResponse = json.decode(response.body);
@@ -401,7 +406,9 @@ class LogicApi {
   }
 
   ///verify OTp
-  Future<void> verifyOTPRegistrasi(String hasilEncode) async {
+  Future<void> verifyOTPRegistrasi(context, String hasilEncode) async {
+    final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
     final response = await http.post(
       Uri.parse(constant.urlAPi + constant.verifyOTP),
       // Ganti URL dengan URL endpoint Flask Anda
@@ -409,12 +416,117 @@ class LogicApi {
       headers: {'Authorization': 'Bearer $hasilEncode'},
     );
 
-    print(hasilEncode);
     if (response.statusCode == 200) {
-      print('Login successful');
-      print('Token: ${jsonDecode(response.body)['data']}');
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+
+      if (statusresponse == "success") {
+        ID = jsonResponse['data']['id'];
+        token = jsonResponse['data']['token'];
+
+        await secureStorage.write(key: 'ID', value: ID);
+        await secureStorage.write(key: 'token', value: token);
+
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) => const InputName()),
+            (Route<dynamic> route) => false);
+      }
+    } else if (response.statusCode == 400) {
+      print('message: ${jsonDecode(response.body)['message']}');
     }
-    else if (response.statusCode == 400) {
+  }
+
+  ///SetName
+  setName(context, String name, String hasilEncode) async {
+    Map<String, dynamic> data = {
+      'name': name,
+    };
+
+    String uri = constant.urlAPi + constant.setName;
+    Uri uriValue = Uri.parse(uri);
+
+    try {
+      var response = await http.put(
+        uriValue,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $hasilEncode',
+        },
+        body: json.encode(data),
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+
+        if (statusresponse == "success") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SettingPIN()),
+          );
+        }
+      } else if (response.statusCode == 202) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+
+        if (statusresponse == "failed") {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      RegisterPages(message: messageresponse)),
+              (Route<dynamic> route) => true);
+        }
+      } else if (response.statusCode == 400) {
+        var jsonResponse = json.decode(response.body);
+
+        if (jsonResponse != null) {
+          statusresponse = jsonResponse['status'];
+          messageresponse = jsonResponse['message'];
+        }
+      }
+    } catch (e) {
+      print('Error during OTP request: $e');
+      // Handle the error as needed
+    }
+  }
+
+  ///serPIN
+  Future<void> setPIN(context, String hasilEncode) async {
+    final response = await http.post(
+      Uri.parse(constant.urlAPi + constant.setPin),
+      // Ganti URL dengan URL endpoint Flask Anda
+
+      headers: {'Authorization': 'Bearer $hasilEncode'},
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+
+      if (statusresponse == "success") {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) => const DashboardPages()),
+            (Route<dynamic> route) => false);
+      }
+    } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
     }
   }
