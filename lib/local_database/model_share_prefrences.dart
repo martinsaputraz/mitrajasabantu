@@ -7,12 +7,10 @@ class ModelSharePreferences {
     final prefs = await SharedPreferences.getInstance();
     String nama_lengkap = prefs.getString("nama_lengkap") ?? '';
     String aksesMasuk = prefs.getString("akses_masuk") ?? '';
-    String email = prefs.getString("email") ?? '';
 
     return {
       'nama_lengkap': nama_lengkap,
       'akses_masuk': aksesMasuk,
-      'email': email,
     };
   }
 

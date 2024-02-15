@@ -59,8 +59,6 @@ class LogicApi {
       }
 
       if (statusresponse == "failed") {
-        print(messageresponse);
-
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const LoginPages()),
@@ -443,6 +441,8 @@ class LogicApi {
 
   ///SetName
   setName(context, String name, String hasilEncode) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
     Map<String, dynamic> data = {
       'name': name,
     };
@@ -467,6 +467,9 @@ class LogicApi {
           statusresponse = jsonResponse['status'];
           messageresponse = jsonResponse['message'];
         }
+        sharedPreferences.setString(
+            "akses_masuk", jsonResponse['status'] ?? "null");
+        sharedPreferences.setString("akses_masuk", name);
 
         if (statusresponse == "success") {
           Navigator.push(
@@ -514,7 +517,6 @@ class LogicApi {
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
-      print("helo world");
       if (jsonResponse != null) {
         statusresponse = jsonResponse['status'];
         messageresponse = jsonResponse['message'];
@@ -528,6 +530,44 @@ class LogicApi {
       }
     } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
+    }
+  }
+
+  ///Login User By Phone
+
+  LoginBYPhone(context, String phone) async {
+    Map<String, dynamic> data = {'phone': phone};
+
+    String uri = constant.urlAPi + constant.loginApiByphone;
+    Uri uriValue = Uri.parse(uri);
+
+    var response = await http.post(
+      uriValue,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(data),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+    } else if (response.statusCode == 303) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
+    } else if (response.statusCode == 400) {
+      var jsonResponse = json.decode(response.body);
+
+      if (jsonResponse != null) {
+        statusresponse = jsonResponse['status'];
+        messageresponse = jsonResponse['message'];
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Assets/AssetsIcon.dart';
@@ -22,25 +23,34 @@ class OnboardingPages extends StatefulWidget {
 class _OnboardingPagesState extends State<OnboardingPages> {
   //
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: assetsColor.bgOnboardingPages,
       body: Column(
         children: [
+
           /// LOGO COMPANY & BUTTON "BAHASA"
           Container(
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 /// IMAGE LOGO
-                Container(
-                  child: Image.asset(
-                    assetsLogo.jbLogoCutting,
-                    width: 135,
-                    height: 25,
-                  ),
+                Image.asset(
+                  assetsLogo.jbLogoCutting,
+                  width: 135,
+                  height: 25,
                 ),
 
                 /// BUTTON "BAHASA"
@@ -66,8 +76,11 @@ class _OnboardingPagesState extends State<OnboardingPages> {
           ),
 
           /// SLIDE SHOW
-          Container(
-            height: MediaQuery.of(context).size.height * 0.5,
+          SizedBox(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.5,
             child: const OnboardingContent(),
           ),
 
@@ -82,7 +95,9 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                 child: Container(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      _handleGoogleSignIn();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonLoginwithGoogle,
                       shape: RoundedRectangleBorder(
@@ -145,28 +160,27 @@ class _OnboardingPagesState extends State<OnboardingPages> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 /// BUTTTON "MASUK"
                 Expanded(
-                  child: Container(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPages()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: assetsColor.buttonLogin,
-                        side: BorderSide(color: assetsColor.borderLoginButton),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                      child: Text(
-                        'Masuk',
-                        style: TextStyle(
-                            color: assetsColor.textButtonLogin, fontSize: 18),
-                      ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPages()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: assetsColor.buttonLogin,
+                      side: BorderSide(color: assetsColor.borderLoginButton),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                    child: Text(
+                      'Masuk',
+                      style: TextStyle(
+                          color: assetsColor.textButtonLogin, fontSize: 18),
                     ),
                   ),
                 ),
@@ -174,28 +188,27 @@ class _OnboardingPagesState extends State<OnboardingPages> {
 
                 /// BUTTON DAFTAR
                 Expanded(
-                  child: Container(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegisterPages(
-                                    message: '',
-                                  )),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: assetsColor.buttonRegister,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                      ),
-                      child: Text(
-                        'Daftar',
-                        style: TextStyle(
-                            color: assetsColor.textButtonRegister,
-                            fontSize: 18),
-                      ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const RegisterPages(
+                              message: '',
+                            )),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: assetsColor.buttonRegister,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                    child: Text(
+                      'Daftar',
+                      style: TextStyle(
+                          color: assetsColor.textButtonRegister,
+                          fontSize: 18),
                     ),
                   ),
                 ),
@@ -205,5 +218,25 @@ class _OnboardingPagesState extends State<OnboardingPages> {
         ],
       ),
     );
+  }
+
+  void _handleGoogleSignIn() async {
+    try {
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      UserCredential userCredential =
+      await _auth.signInWithProvider(googleAuthProvider);
+      User? user = userCredential.user;
+
+      if (user != null) {
+        setState(() {
+          _user = user;
+          print("data_user: ${_user!.email}");
+        });
+      } else {
+        print("User is null");
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 }

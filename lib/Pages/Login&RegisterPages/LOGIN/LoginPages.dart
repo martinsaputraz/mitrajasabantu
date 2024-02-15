@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:jasa_bantu/Settings/logicapi.dart';
 
@@ -24,6 +23,7 @@ class _LoginPagesState extends State<LoginPages> {
 */
 
   String phoneNumber = "";
+  String phoneNumberLogin = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,7 @@ class _LoginPagesState extends State<LoginPages> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           /// LOGO JASA BANTU BG WHITE
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -75,24 +76,6 @@ class _LoginPagesState extends State<LoginPages> {
             ),
           ),
 
-          /// "PHONE" TEXT FIELDS
-          /*       Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-            child: Center(
-              child: TextField(
-                controller: _phoneNumber,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    labelText: 'Nomor Handphone',
-                    prefixIcon:
-                        Icon(Icons.phone, color: assetsColor.textLoginArea),
-                    prefixText: '+62'),
-              ),
-            ),
-          ),*/
-
           Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
             child: Center(
@@ -103,16 +86,15 @@ class _LoginPagesState extends State<LoginPages> {
                     borderSide: BorderSide(),
                   ),
                   prefixIcon:
-                      Icon(Icons.phone, color: assetsColor.textLoginArea),
+                  Icon(Icons.phone, color: assetsColor.textLoginArea),
                 ),
                 initialCountryCode: 'ID',
                 // Set the initial country code to Indonesia
                 // Limit selection to Indonesia
                 onChanged: (phone) {
                   setState(() {
-                    phoneNumber = phone.completeNumber;
+                    phoneNumberLogin = phone.completeNumber;
                   });
-                  print(phoneNumber);
                 },
                 inputFormatters: [],
               ),
@@ -164,6 +146,7 @@ class _LoginPagesState extends State<LoginPages> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+
               /// TEXT SPAN "KETENTUAN LAYANAN" & "KEBIJAKAN PRIVASI"
               Container(
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -233,24 +216,18 @@ class _LoginPagesState extends State<LoginPages> {
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                 child: Center(
                   child: ElevatedButton(
-                    onPressed: () {
-/*
+                    onPressed: () async {
+                      if (phoneNumberLogin == "") {} else {
+                        print(phoneNumberLogin);
+                        if (phoneNumberLogin.startsWith('+')) {
+                          phoneNumber = phoneNumberLogin
+                              .substring(1); // Remove the leading '+'
+                        }
+                        print(phoneNumber);
 
-                      String phoneNumber = _phoneNumber.text;
-*/
-                      if (phoneNumber.startsWith('+')) {
-                        phoneNumber =
-                            phoneNumber.substring(1); // Remove the leading '+'
+
+                        logicApi.LoginBYPhone(context, phoneNumber);
                       }
-                      print(phoneNumber);
-/*
-                      logicApi.checkPhone(context, phone);
-*/
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DashboardPages()),
-                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,
