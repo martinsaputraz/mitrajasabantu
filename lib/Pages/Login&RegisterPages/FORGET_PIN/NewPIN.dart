@@ -1,12 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class NewPIN extends StatefulWidget {
@@ -47,10 +46,12 @@ class _NewPINState extends State<NewPIN> {
         child: Column(
           children: [
             /// ICON
-            Image.asset(
-              constants.imagePin,
-              width: 100,
-              height: 100,
+            Container(
+              child: Image.asset(
+                assetsIcon.iconNewpin,
+                width: 100,
+                height: 100,
+              ),
             ),
 
             /// TITLE TEXT

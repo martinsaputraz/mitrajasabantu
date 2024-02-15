@@ -1,14 +1,17 @@
-import 'package:aes256gcm/aes256gcm.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
-import 'package:jasa_bantu/local_database/secure_storage.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
+LogicApi logicApi = LogicApi();
 
 class SettingPIN extends StatefulWidget {
   const SettingPIN({super.key});
@@ -22,34 +25,30 @@ class _SettingPINState extends State<SettingPIN> {
 
   ///FOR 'OTP'
   OtpFieldController setPINController = OtpFieldController();
-  String setPIN = "";
-  String screatelkey = "";
-  late String hashed = "";
-  String skripshett = "";
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  Constant constant = Constant();
+
+  String? ID;
+
+  String setPinSimpan = "";
+  String rotatedText = "";
+  String textRotate = "";
+  String data_nilai = "";
 
   @override
   void initState() {
-    secureCode();
-
+    getStorageID();
     super.initState();
+  }
+
+  Future<void> getStorageID() async {
+    // Retrieve the phone number (noHp) from secure storage
+    ID = await secureStorage.read(key: 'ID');
   }
 
   @override
   void dispose() {
     super.dispose();
-  }
-
-  void secureCode() async {
-    // Create an instance of Securestorage
-    Securestorage secureStorage = Securestorage();
-
-    // Call the secureToken method to retrieve values
-    Map<String, String> secureValues = await secureStorage.secureToken('');
-
-    // Retrieve the screatelkey value from the map
-    setState(() {
-      screatelkey = secureValues['screatelkey'] ?? '';
-    });
   }
 
   @override
@@ -66,11 +65,14 @@ class _SettingPINState extends State<SettingPIN> {
       body: Center(
         child: Column(
           children: [
+
             /// ICON
-            Image.asset(
-              constants.imagePin,
-              width: 100,
-              height: 100,
+            Container(
+              child: Image.asset(
+                assetsIcon.iconNewpin,
+                width: 100,
+                height: 100,
+              ),
             ),
 
             /// TITLE TEXT
@@ -90,10 +92,10 @@ class _SettingPINState extends State<SettingPIN> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: Text(
                 'PIN akan digunakan untuk hal penting seperti\n'
-                'masuk ke akun, bertransaksi, dll',
+                    'masuk ke akun, bertransaksi, dll',
                 textAlign: TextAlign.center,
                 style:
-                    TextStyle(fontSize: 15, color: assetsColor.textSetPINArea),
+                TextStyle(fontSize: 15, color: assetsColor.textSetPINArea),
               ),
             ),
 
@@ -108,26 +110,23 @@ class _SettingPINState extends State<SettingPIN> {
                     obscureText: true,
                     keyboardType: TextInputType.number,
                     length: 6,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldWidth: 40,
                     fieldStyle: FieldStyle.box,
                     outlineBorderRadius: 5,
                     style: const TextStyle(fontSize: 15),
                     onChanged: (pin) {
-                      if (kDebugMode) {
-                        print("Changed: $pin");
+                      if (pin.length == 6) {
+                        setState(() {
+                          setPinSimpan = pin;
+                        });
                       }
-                      // if (pin.isEmpty) {
-                      //   FocusScope.of(context).previousFocus();
-                      // }
-                    },
-                    onCompleted: (pin) {
-                      setState(() {
-                        setPIN = pin;
-                      });
-                      if (kDebugMode) {
-                        print("Completed: $pin");
+                      else {
+                        print("heloworld");
                       }
                     },
                   ),
@@ -145,20 +144,19 @@ class _SettingPINState extends State<SettingPIN> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    var text =
-                        'gAAAAABlw1C15JeuV5dHI52liC8F3Bs1ytNb2siKLXUZ6bo9t-Z6DlDLi6DmmMqpYESUs5VLhrMC0aOfWHR10sA9EzFgXhb2aw==';
-                    var password =
-                        'MDEwMjAzMDQwNTA2MDcwODA5MTAxMTEyMTMxNDE1MTY=';
+                    if (setPinSimpan == "") {} else {
+                      setState(() {
+                        textRotate = ID! +
+                            constant.delimeterRegistration +
+                            setPinSimpan!;
 
-                    var encrypted = await Aes256Gcm.encrypt(text, password);
-                    var decrypted = await Aes256Gcm.decrypt(text, password);
+                        rotatedText = Rotasi.rotateText(textRotate, 15);
+                        data_nilai = base64Encode(utf8.encode(rotatedText));
+                        print(data_nilai);
+                      });
 
-                    setState(() {
-                      skripshett =
-                          encrypted; // Assign the encrypted value directly, assuming encrypted is a string
-                    });
-
-                    print('Encrypted text: $decrypted');
+                      logicApi.setPIN(context, data_nilai);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: assetsColor.buttonSavePIN,
@@ -170,7 +168,9 @@ class _SettingPINState extends State<SettingPIN> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Simpan PIN & Selesai',
+                        'Simpan PIN'
+                        // '& Selesai'
+                        ,
                         style: TextStyle(
                             color: assetsColor.textSavePINButton, fontSize: 18),
                       ),

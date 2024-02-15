@@ -1,37 +1,29 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/PINLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
-import 'package:jasa_bantu/Settings/rotasi.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
-class OTPPages extends StatefulWidget {
-  const OTPPages({super.key});
+class OTPLogin extends StatefulWidget {
+  const OTPLogin({super.key});
 
   @override
-  State<OTPPages> createState() => _OTPPagesState();
+  State<OTPLogin> createState() => _OTPLoginState();
 }
 
-class _OTPPagesState extends State<OTPPages> {
+class _OTPLoginState extends State<OTPLogin> {
   //
 
   ///FOR 'OTP'
   OtpFieldController otpController = OtpFieldController();
-  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
-
-  String? storedNoHp;
-  String rotatedText = "";
-  String textRotate = "";
-  String data_nilai = "";
 
   /// FOR BUTTON "RESEND OTP"
   bool isResendOTPPressed = false;
@@ -53,31 +45,17 @@ class _OTPPagesState extends State<OTPPages> {
     super.initState();
 
     // Set waktu akhir, contoh 1 menit dari waktu sekarang
-    endTime = DateTime.now().add(const Duration(minutes: 5));
-
-    getStoredNoHp();
+    endTime = DateTime.now().add(const Duration(minutes: 1));
 
     // Mulai timer mundur
-/*    timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
-      setState(() {
-
-      });
-    })*/
-    ;
-  }
-
-  Future<void> getStoredNoHp() async {
-    // Retrieve the phone number (noHp) from secure storage
-    String? noHp = await secureStorage.read(key: 'nomorHp');
-
-    setState(() {
-      storedNoHp = noHp;
+    timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
+      setState(() {});
     });
   }
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) {
-      if (n <= 10) return "$n";
+      if (n >= 10) return "$n";
       return "0$n";
     }
 
@@ -112,10 +90,8 @@ class _OTPPagesState extends State<OTPPages> {
             padding: const EdgeInsets.only(right: 30),
             child: ElevatedButton.icon(
               onPressed: () {
-                /*        Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingPIN()));*/
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const PINLogin()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: assetsColor.buttonHelpButton,
@@ -190,17 +166,16 @@ class _OTPPagesState extends State<OTPPages> {
                     outlineBorderRadius: 5,
                     style: const TextStyle(fontSize: 15),
                     onChanged: (pin) {
-                      setState(() {
-                        textRotate =
-                            storedNoHp! + constant.delimeterRegistration + pin;
-
-                        rotatedText = Rotasi.rotateText(textRotate, 15);
-
-                        data_nilai = base64Encode(utf8.encode(rotatedText));
-                      });
-
-                      if (pin.length == 6) {
-                        logicApi.verifyOTPRegistrasi(context, data_nilai);
+                      if (kDebugMode) {
+                        print("Changed: $pin");
+                      }
+                      // if (pin.isEmpty) {
+                      //   FocusScope.of(context).previousFocus();
+                      // }
+                    },
+                    onCompleted: (pin) {
+                      if (kDebugMode) {
+                        print("Completed: $pin");
                       }
                     },
                   ),

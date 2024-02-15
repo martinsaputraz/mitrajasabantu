@@ -1,23 +1,41 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPpages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class RegisterPages extends StatefulWidget {
-  const RegisterPages({super.key});
+  final String message; // Deklarasi variabel message
+
+  const RegisterPages({Key? key, required this.message}) : super(key: key);
 
   @override
   State<RegisterPages> createState() => _RegisterPagesState();
 }
 
+LogicApi logicApi = LogicApi();
+
 class _RegisterPagesState extends State<RegisterPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
-  final TextEditingController _phoneNumber = TextEditingController();
+  // TextEditingController _phoneNumber = TextEditingController();
+  String phoneNumberRegis = "";
+  String phoneNumber = "";
+
+  String messagecheck = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    setState(() {
+      messagecheck = widget.message;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +57,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
             child: Image.asset(
-              'assets/logo/logo_jasabantu_bgwhite.jpg',
+              assetsLogo.jbLogoBGWhite,
               width: 115,
               height: 25,
             ),
@@ -70,7 +88,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           ),
 
           /// "PHONE" TEXT FIELDS
-          Container(
+          /*Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
             child: Center(
               child: TextField(
@@ -85,7 +103,43 @@ class _RegisterPagesState extends State<RegisterPages> {
                     prefixText: '+62 '),
               ),
             ),
+          ),*/
+
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Center(
+              child: IntlPhoneField(
+                decoration: InputDecoration(
+                  labelText: 'Nomor Handphone',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon:
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
+                ),
+                initialCountryCode: 'ID',
+                // Set the initial country code to Indonesia
+                // Limit selection to Indonesia
+                onChanged: (phone) {
+                  setState(() {
+                    phoneNumberRegis = phone.completeNumber;
+                  });
+                  print(phone.completeNumber);
+                },
+              ),
+            ),
           ),
+
+          if (messagecheck != null)
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Text(
+                messagecheck!,
+                style: TextStyle(
+                  color: Colors.red, // Warna teks merah
+                ),
+              ),
+            ),
 
           Expanded(
             child: Container(),
@@ -133,7 +187,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                                       padding:
                                           const EdgeInsets.only(right: 20.0),
                                       child: Image.asset(
-                                        constants.imagegoogle,
+                                        'assets/icon/Icon_Google.png',
                                         // color: assetsColor.textLoginwithGoogle,
                                         height: 20,
                                         width: 20,
@@ -232,11 +286,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const OTPPages()),
-                      );
+                      if (phoneNumberRegis == "") {
+                      } else {
+                        if (phoneNumberRegis.startsWith('+')) {
+                          phoneNumber = phoneNumberRegis
+                              .substring(1); // Remove the leading '+'
+                        }
+                        logicApi.sendOTPDefault(context, phoneNumber);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

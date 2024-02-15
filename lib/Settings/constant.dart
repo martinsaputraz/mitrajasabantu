@@ -1,13 +1,13 @@
 class Constant {
   /// API
-  String loginApi = "/api/login";
-  String logoutApi = "/api/logout";
-  String changepinApi = "/api/changepin";
-  String changeprofileapi = "/api/changeprofile";
-  String registrasiHp = "/api/new_user";
-  String otpApi = "/api/users/otp";
-  String pin = "/api/pin";
-  String checkPhone = "/api/checkphone";
+  String loginApiByphone = "/loginByPhone";
+  String loginAPIBYemail = "/loginByEmail";
+  String checkPin = "/loginPin";
+  String setName = "/api/users/set_profile";
+  String setPin = "/api/users/set_pin";
+  String RequestOTP = "/api/new_users";
+  String verifyOTP = "/api/users/otp";
+  String logoutApi = "";
 
   /// firebase options mobile
   String apiKey = 'AIzaSyD6XrVj2dkYC942CHBqK3-x56Yv3SC3yOg';
@@ -26,23 +26,11 @@ class Constant {
   String iosClientId = '';
   String iosBundleId = '';
 
-  /// images assets
-  String imageSplash = 'assets/logo/logo_jasabantu.jpg';
-  String imageLogo = 'assets/logo/logo_jasabantu_bgwhite.jpg';
-  String imageSlider1 = 'assets/images/slideshow/slide_1.png';
-  String imageSlider2 = 'assets/images/slideshow/slide_2.png';
-  String imageSlider3 = 'assets/images/slideshow/slide_3.png';
-  String imageSlider4 = 'assets/images/slideshow/slide_2.png';
-  String imageSlider5 = 'assets/images/slideshow/slide_3.png';
-  String imagePin = 'assets/icon/Icon_NewPin.png';
-  String imagegoogle = 'assets/icon/Icon_Google.png';
-  String imageOnboarding = 'assets/logo/logo_jasabantu_cutting.jpg';
-
   ///Others
   String urlAPi = "https://bkgkgngv-5000.asse.devtunnels.ms/";
-  String namaPT = "PT.Jasa Bantu Indonesia";
+  String namaPT = "PT. Jasa Bantu Indonesia";
 
-  ///Teks SLider Atas
+  ///Teks Slider Atas
   String teks1SliderAtas = "Jasa kini makin mudah";
   String teks2SliderAtas = "Transaksi juga mudah";
   String teks3SliderAtas = "On your way...";
@@ -58,4 +46,11 @@ class Constant {
   String teks4SliderBawah = "Sliding with animation";
   String teks5SliderBawah =
       "Where everything is possible and customize your onboarding.";
+
+  String ROT_KEY =
+      "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ@#\$_-&%:0123456789";
+
+  String flagWa = "WA";
+  String flagSms = "SMS";
+  String delimeterRegistration = ":";
 }

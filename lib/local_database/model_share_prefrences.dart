@@ -6,15 +6,11 @@ class ModelSharePreferences {
   Future<Map<String, String>> dataShareprefrences() async {
     final prefs = await SharedPreferences.getInstance();
     String nama_lengkap = prefs.getString("nama_lengkap") ?? '';
-    String nomorHp = prefs.getString("nomorHp") ?? '';
     String aksesMasuk = prefs.getString("akses_masuk") ?? '';
-    String email = prefs.getString("email") ?? '';
 
     return {
       'nama_lengkap': nama_lengkap,
-      'nomorHp': nomorHp,
       'akses_masuk': aksesMasuk,
-      'email': email,
     };
   }
 
@@ -24,7 +20,6 @@ class ModelSharePreferences {
 
     // Remove specific entries
     prefs.remove("nama_lengkap");
-    prefs.remove("nomorHp");
     prefs.remove("akses_masuk");
     Navigator.of(currentContext).pushAndRemoveUntil(
       MaterialPageRoute(builder: (BuildContext context) => OnboardingPages()),

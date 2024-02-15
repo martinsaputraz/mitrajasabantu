@@ -1,12 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/FORGET_PIN/forgetpin.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/FORGET_PIN/ForgetPIN.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class PINLogin extends StatefulWidget {
@@ -94,22 +92,26 @@ class _PINLoginState extends State<PINLogin> {
             ),
 
             /// "LUPA PIN?" BUTTON
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const ForgetPIN()));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: assetsColor.buttonForgetPIN,
-                side: BorderSide(color: assetsColor.borderForgetPINButton),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-              ),
-              icon: Icon(Icons.live_help_outlined,
-                  color: assetsColor.textForgetPINButton),
-              label: Text(
-                'Lupa PIN?',
-                style: TextStyle(color: assetsColor.textForgetPINButton),
+            Container(
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForgetPIN()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: assetsColor.buttonForgetPIN,
+                  side: BorderSide(color: assetsColor.borderForgetPINButton),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                ),
+                icon: Icon(Icons.live_help_outlined,
+                    color: assetsColor.textForgetPINButton),
+                label: Text(
+                  'Lupa PIN?',
+                  style: TextStyle(color: assetsColor.textForgetPINButton),
+                ),
               ),
             ),
 

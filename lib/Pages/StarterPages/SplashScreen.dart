@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
+Constant constant = Constant();
 
 class SplashScreen extends StatelessWidget {
   final PackageInfo packageInfo;
@@ -54,7 +54,7 @@ class SplashScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 150, bottom: 10),
               child: Image.asset(
-                constants.imageSplash,
+                assetsLogo.assetsLogo,
                 width: 250,
                 height: 100,
               ),
@@ -76,7 +76,7 @@ class SplashScreen extends StatelessWidget {
                     style: TextStyle(color: assetsColor.textSplashScreen),
                   ),
                   Text(
-                    constants.namaPT,
+                    constant.namaPT,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: assetsColor.textSplashScreen),
                   ),

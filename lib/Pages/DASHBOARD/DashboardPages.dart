@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/HomePages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
 
 class DashboardPages extends StatefulWidget {
@@ -27,6 +25,7 @@ class _DashboardPagesState extends State<DashboardPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: _bottomMenuNavBar[_selectedIndexMenuNavBar],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,

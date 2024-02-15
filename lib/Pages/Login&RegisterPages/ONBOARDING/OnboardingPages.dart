@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Assets/AssetsIcon.dart';
+import 'package:jasa_bantu/Assets/AssetsImage.dart';
+import 'package:jasa_bantu/Assets/AssetsLogo.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingContent.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/RegisterPages.dart';
-import 'package:jasa_bantu/Settings/AssetsColor.dart';
-import 'package:jasa_bantu/Settings/constant.dart';
 
-Constant constants = Constant();
 AssetsColor assetsColor = AssetsColor();
+AssetsLogo assetsLogo = AssetsLogo();
+AssetsIcon assetsIcon = AssetsIcon();
+AssetsImages assetsImages = AssetsImages();
 
 class OnboardingPages extends StatefulWidget {
   const OnboardingPages({super.key});
@@ -16,6 +21,17 @@ class OnboardingPages extends StatefulWidget {
 }
 
 class _OnboardingPagesState extends State<OnboardingPages> {
+  //
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +48,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
 
                 /// IMAGE LOGO
                 Image.asset(
-                  constants.imageOnboarding,
+                  assetsLogo.jbLogoCutting,
                   width: 135,
                   height: 25,
                 ),
@@ -40,8 +56,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                 /// BUTTON "BAHASA"
                 ElevatedButton.icon(
                   onPressed: () {
-
-
+                    //
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: assetsColor.buttonSwitchLanguage,
@@ -80,7 +95,9 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                 child: Container(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      _handleGoogleSignIn();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonLoginwithGoogle,
                       shape: RoundedRectangleBorder(
@@ -95,7 +112,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),
                               child: Image.asset(
-                                constants.imagegoogle,
+                                assetsIcon.coloredGoogle,
                                 // color: assetsColor.textLoginwithGoogle,
                                 height: 20,
                                 width: 20,
@@ -176,7 +193,10 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RegisterPages()),
+                            builder: (context) =>
+                            const RegisterPages(
+                              message: '',
+                            )),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -187,7 +207,8 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                     child: Text(
                       'Daftar',
                       style: TextStyle(
-                          color: assetsColor.textButtonRegister, fontSize: 18),
+                          color: assetsColor.textButtonRegister,
+                          fontSize: 18),
                     ),
                   ),
                 ),
@@ -197,5 +218,25 @@ class _OnboardingPagesState extends State<OnboardingPages> {
         ],
       ),
     );
+  }
+
+  void _handleGoogleSignIn() async {
+    try {
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      UserCredential userCredential =
+      await _auth.signInWithProvider(googleAuthProvider);
+      User? user = userCredential.user;
+
+      if (user != null) {
+        setState(() {
+          _user = user;
+          print("data_user: ${_user!.email}");
+        });
+      } else {
+        print("User is null");
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 }
