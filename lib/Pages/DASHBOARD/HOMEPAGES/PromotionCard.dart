@@ -14,25 +14,29 @@ class _PromotionCardState extends State<PromotionCard> {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
-      'backgroundColor': Colors.lightBlueAccent[450],
+      'promoColorBox' : Colors.blue,
+      'backgroundColor': Colors.blue[200],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Gratis Ongkir',
       'imagePath': 'assets/images/Ads(1).jpg',
-      'backgroundColor': Colors.lightBlueAccent[450],
+      'promoColorBox' : Colors.deepOrange,
+      'backgroundColor': Colors.deepOrange[200],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
-      'backgroundColor': Colors.lightBlueAccent[450],
+      'promoColorBox' : Colors.amber,
+      'backgroundColor': Colors.amber[200],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
-      'backgroundColor': Colors.lightBlueAccent[450],
+      'promoColorBox' : Colors.green,
+      'backgroundColor': Colors.green[200],
     },
   ];
 
@@ -90,7 +94,7 @@ class _PromotionCardState extends State<PromotionCard> {
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: Colors.blueAccent,
+                            color: cardData[index]['promoColorBox'],
                           ),
                           child: Text(
                             cardData[index]['promoText'],

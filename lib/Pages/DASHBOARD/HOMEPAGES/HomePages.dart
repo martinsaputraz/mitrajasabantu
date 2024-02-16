@@ -3,6 +3,8 @@ import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/DiscountCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/GridMenu.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/MyCurrentLocation.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ProgressCard.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/PromotionCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderImages.dart';
 
 AssetsColor assetsColor = AssetsColor();
@@ -105,13 +107,21 @@ class _HomePagesState extends State<HomePages> {
           /// SLIDER ADS IMAGES
           SliderImages(),
 
-          /// PROMO CARD
-          DiscountCard(),
+          /// PROMOTION CARD
+          PromotionCard(),
 
           /// GRID MENU
           GridMenu(),
 
-          ///
+          /// PROGRESS CARD
+          ProgressCard(),
+
+          /// PROMO CARD
+          DiscountCard(),
+
+
+
+
 
           //
         ],

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingFunction.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Settings/constant.dart';
 
 AssetsColor assetsColor = AssetsColor();
+Constant constanst = Constant();
 
 class OnboardingContent extends StatelessWidget {
   const OnboardingContent({super.key});
@@ -39,9 +41,13 @@ class OnboardingContent extends StatelessWidget {
       ],
       speed: 1.8,
       pageBodies: [
+
         Container(
           alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +57,7 @@ class OnboardingContent extends StatelessWidget {
                 child: Container(),
               ),
               Text(
-                'Jasa kini makin mudah',
+                constanst.teks1SliderAtas,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.textOnboardingArea,
@@ -61,7 +67,7 @@ class OnboardingContent extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'Kebutuhan rumah, lagi di kantor atau keinginan pribadi tersedia semua lho disini',
+                constanst.teks1SliderBawah,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.subtextOnboardingArea,
@@ -74,7 +80,10 @@ class OnboardingContent extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +93,7 @@ class OnboardingContent extends StatelessWidget {
                 child: Container(),
               ),
               Text(
-                'Transaksi juga mudah',
+                constanst.teks2SliderAtas,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.textOnboardingArea,
@@ -94,7 +103,7 @@ class OnboardingContent extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'asdfgh jklmn opq rstu vwxyz 1234 567 890',
+                constanst.teks2SliderBawah,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.subtextOnboardingArea,
@@ -107,7 +116,10 @@ class OnboardingContent extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -117,7 +129,7 @@ class OnboardingContent extends StatelessWidget {
                 child: Container(),
               ),
               Text(
-                'On your way...',
+                constanst.teks3SliderAtas,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.textOnboardingArea,
@@ -127,7 +139,7 @@ class OnboardingContent extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'to find the perfect looking Onboarding for your app?',
+                constanst.teks3SliderBawah,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.subtextOnboardingArea,
@@ -140,7 +152,10 @@ class OnboardingContent extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -150,40 +165,7 @@ class OnboardingContent extends StatelessWidget {
                 child: Container(),
               ),
               Text(
-                'You’ve reached your destination.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: assetsColor.textOnboardingArea,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                'Sliding with animation',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: assetsColor.subtextOnboardingArea,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.only(bottom: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(),
-              ),
-              Text(
-                'Start now!',
+                constanst.teks4SliderAtas,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.textOnboardingArea,
@@ -194,6 +176,43 @@ class OnboardingContent extends StatelessWidget {
               const SizedBox(height: 5),
               Text(
                 'Where everything is possible and customize your onboarding.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: assetsColor.subtextOnboardingArea,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Container(),
+              ),
+              Text(
+                constanst.teks5SliderAtas,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: assetsColor.textOnboardingArea,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                constanst.teks5SliderBawah,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: assetsColor.subtextOnboardingArea,

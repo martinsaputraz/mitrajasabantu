@@ -1,9 +1,13 @@
 class Constant {
   /// API
-  String loginApi = "";
+  String loginApiByphone = "/loginByPhone";
+  String loginAPIBYemail = "/loginByEmail";
+  String checkPin = "/loginPin";
+  String setName = "/api/users/set_profile";
+  String setPin = "/api/users/set_pin";
+  String RequestOTP = "/api/new_users";
+  String verifyOTP = "/api/users/otp";
   String logoutApi = "";
-  String changepinApi = "";
-  String changeprofileapi = "";
 
   /// firebase options mobile
   String apiKey = 'AIzaSyD6XrVj2dkYC942CHBqK3-x56Yv3SC3yOg';
@@ -24,9 +28,9 @@ class Constant {
 
   ///Others
   String urlAPi = "https://bkgkgngv-5000.asse.devtunnels.ms/";
-  String namaPT = "PT.Jasa Bantu Indonesia";
+  String namaPT = "PT. Jasa Bantu Indonesia";
 
-  ///Teks SLider Atas
+  ///Teks Slider Atas
   String teks1SliderAtas = "Jasa kini makin mudah";
   String teks2SliderAtas = "Transaksi juga mudah";
   String teks3SliderAtas = "On your way...";
@@ -42,4 +46,11 @@ class Constant {
   String teks4SliderBawah = "Sliding with animation";
   String teks5SliderBawah =
       "Where everything is possible and customize your onboarding.";
+
+  String ROT_KEY =
+      "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ@#\$_-&%:0123456789";
+
+  String flagWa = "WA";
+  String flagSms = "SMS";
+  String delimeterRegistration = ":";
 }

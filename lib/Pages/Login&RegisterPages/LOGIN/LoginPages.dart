@@ -1,10 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
 
 AssetsColor assetsColor = AssetsColor();
+LogicApi logicApi = LogicApi();
 
 class LoginPages extends StatefulWidget {
   const LoginPages({super.key});
@@ -16,12 +18,17 @@ class LoginPages extends StatefulWidget {
 class _LoginPagesState extends State<LoginPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
+/*
   final TextEditingController _phoneNumber = TextEditingController();
+*/
+
+  String phoneNumber = "";
+  String phoneNumberLogin = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: assetsColor.bgLoginPages,
       appBar: AppBar(
         backgroundColor: assetsColor.bgLoginPages,
@@ -30,16 +37,14 @@ class _LoginPagesState extends State<LoginPages> {
           style: TextStyle(fontSize: 20, color: assetsColor.textLoginArea),
         ),
       ),
-      body:
-          // SingleChildScrollView(
-          //   child:
-          Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           /// LOGO JASA BANTU BG WHITE
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: Image.asset(
               assetsLogo.jbLogoBGWhite,
               width: 115,
@@ -61,7 +66,7 @@ class _LoginPagesState extends State<LoginPages> {
 
           /// SUB TITLE TEXT
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
             child: Text(
               'Selamat datang kembali!',
               style: TextStyle(
@@ -71,20 +76,27 @@ class _LoginPagesState extends State<LoginPages> {
             ),
           ),
 
-          /// "PHONE" TEXT FIELDS
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
             child: Center(
-              child: TextField(
-                controller: _phoneNumber,
-                keyboardType: TextInputType.phone,
+              child: IntlPhoneField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    labelText: 'Nomor Handphone',
-                    prefixIcon:
-                        Icon(Icons.phone, color: assetsColor.textLoginArea),
-                    prefixText: '+62 '),
+                  labelText: 'Nomor Handphone',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon:
+                  Icon(Icons.phone, color: assetsColor.textLoginArea),
+                ),
+                initialCountryCode: 'ID',
+                // Set the initial country code to Indonesia
+                // Limit selection to Indonesia
+                onChanged: (phone) {
+                  setState(() {
+                    phoneNumberLogin = phone.completeNumber;
+                  });
+                },
+                inputFormatters: [],
               ),
             ),
           ),
@@ -134,6 +146,7 @@ class _LoginPagesState extends State<LoginPages> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+
               /// TEXT SPAN "KETENTUAN LAYANAN" & "KEBIJAKAN PRIVASI"
               Container(
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -203,12 +216,18 @@ class _LoginPagesState extends State<LoginPages> {
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                 child: Center(
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const OTPLogin()),
-                      );
+                    onPressed: () async {
+                      if (phoneNumberLogin == "") {} else {
+                        print(phoneNumberLogin);
+                        if (phoneNumberLogin.startsWith('+')) {
+                          phoneNumber = phoneNumberLogin
+                              .substring(1); // Remove the leading '+'
+                        }
+                        print(phoneNumber);
+
+
+                        logicApi.LoginBYPhone(context, phoneNumber);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

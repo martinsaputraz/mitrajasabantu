@@ -12,8 +12,14 @@ class DiscountCard extends StatefulWidget {
 }
 
 class _DiscountCardState extends State<DiscountCard> {
+<<<<<<< HEAD
 
   List<Map<String, dynamic>> discountCardData = [
+=======
+  TextEditingController searchController = TextEditingController();
+
+  List<Map<String, dynamic>> cardDataList = [
+>>>>>>> origin/main
     {
       'title': 'Express Elite',
       'location': 'Jakarta Barat',
@@ -46,6 +52,7 @@ class _DiscountCardState extends State<DiscountCard> {
     },
     // Add more data entries as needed
   ];
+<<<<<<< HEAD
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +96,217 @@ class _DiscountCardState extends State<DiscountCard> {
                         child: DiscountCardWidget(cardDataDiscount: discountCardData[index]),
                       ),
                     ),
+=======
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    cardDataList.length,
+                        (index) => Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: CardWidget(cardData: cardDataList[index]),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  final Map<String, dynamic> cardData;
+
+  CardWidget({Key? key, required this.cardData}) : super(key: key);
+
+  bool showImage = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Container(
+        constraints: const BoxConstraints(
+          maxHeight: 350,
+          maxWidth: 200,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    cardData['imagePath'],
+                    height: 100,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(3, 3, 10, 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: const Radius.circular(10),
+                        bottomRight: const Radius.circular(10),
+                      ),
+                      color: Colors.purpleAccent,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: const [
+                        Icon(Icons.star, color: Colors.white),
+                        SizedBox(width: 5),
+                        Text('4.8', style: TextStyle(color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 10, top: 40),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.brown.shade800,
+                    backgroundImage:
+                    showImage ? AssetImage(cardData['imagePath']) : null,
+                    child: showImage ? null : const Text('EP'),
+>>>>>>> origin/main
                   ),
                 ),
                 //
               ],
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Flexible(
+                      child: Text(
+                        cardData['title'],
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Icon(
+                    CupertinoIcons.checkmark_seal_fill,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                cardData['location'],
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: Flexible(
+                child: Text(
+                  cardData['serviceName'],
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: const Text(
+                'Mulai dari',
+                style: TextStyle(color: Colors.black45, fontSize: 15),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Text(
+                    'Rp${cardData['price']}',
+                    style: const TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    ' /pcs',
+                    style: TextStyle(
+                      color: Colors.black45,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.percent_rounded,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    cardData['discountPercentage'],
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    'Rp${cardData['discountedPrice']}',
+                    style: const TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      color: Colors.black45,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
