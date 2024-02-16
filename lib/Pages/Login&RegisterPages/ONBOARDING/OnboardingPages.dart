@@ -38,14 +38,12 @@ class _OnboardingPagesState extends State<OnboardingPages> {
       backgroundColor: assetsColor.bgOnboardingPages,
       body: Column(
         children: [
-
           /// LOGO COMPANY & BUTTON "BAHASA"
           Container(
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 /// IMAGE LOGO
                 Image.asset(
                   assetsLogo.jbLogoCutting,
@@ -77,10 +75,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
 
           /// SLIDE SHOW
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: const OnboardingContent(),
           ),
 
@@ -160,7 +155,6 @@ class _OnboardingPagesState extends State<OnboardingPages> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 /// BUTTTON "MASUK"
                 Expanded(
                   child: ElevatedButton(
@@ -193,10 +187,9 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                            const RegisterPages(
-                              message: '',
-                            )),
+                            builder: (context) => const RegisterPages(
+                                  message: '',
+                                )),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -207,8 +200,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                     child: Text(
                       'Daftar',
                       style: TextStyle(
-                          color: assetsColor.textButtonRegister,
-                          fontSize: 18),
+                          color: assetsColor.textButtonRegister, fontSize: 18),
                     ),
                   ),
                 ),
@@ -224,13 +216,13 @@ class _OnboardingPagesState extends State<OnboardingPages> {
     try {
       GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
       UserCredential userCredential =
-      await _auth.signInWithProvider(googleAuthProvider);
+          await _auth.signInWithProvider(googleAuthProvider);
       User? user = userCredential.user;
 
       if (user != null) {
         setState(() {
           _user = user;
-          print("data_user: ${_user!.email}");
+          print("data_user: ${_user}");
         });
       } else {
         print("User is null");

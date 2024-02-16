@@ -41,7 +41,6 @@ class _LoginPagesState extends State<LoginPages> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           /// LOGO JASA BANTU BG WHITE
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -82,11 +81,11 @@ class _LoginPagesState extends State<LoginPages> {
               child: IntlPhoneField(
                 decoration: InputDecoration(
                   labelText: 'Nomor Handphone',
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
                   prefixIcon:
-                  Icon(Icons.phone, color: assetsColor.textLoginArea),
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
                 ),
                 initialCountryCode: 'ID',
                 // Set the initial country code to Indonesia
@@ -96,7 +95,7 @@ class _LoginPagesState extends State<LoginPages> {
                     phoneNumberLogin = phone.completeNumber;
                   });
                 },
-                inputFormatters: [],
+                inputFormatters: const [],
               ),
             ),
           ),
@@ -146,7 +145,6 @@ class _LoginPagesState extends State<LoginPages> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               /// TEXT SPAN "KETENTUAN LAYANAN" & "KEBIJAKAN PRIVASI"
               Container(
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -217,14 +215,12 @@ class _LoginPagesState extends State<LoginPages> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (phoneNumberLogin == "") {} else {
-                        print(phoneNumberLogin);
+                      if (phoneNumberLogin == "") {
+                      } else {
                         if (phoneNumberLogin.startsWith('+')) {
                           phoneNumber = phoneNumberLogin
                               .substring(1); // Remove the leading '+'
                         }
-                        print(phoneNumber);
-
 
                         logicApi.LoginBYPhone(context, phoneNumber);
                       }
