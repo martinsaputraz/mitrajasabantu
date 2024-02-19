@@ -1,12 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/PINLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
+import 'package:jasa_bantu/Settings/constant.dart';
+import 'package:jasa_bantu/Settings/logicapi.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
+import 'package:jasa_bantu/local_database/model_share_prefrences.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -19,11 +25,22 @@ class OTPLogin extends StatefulWidget {
   State<OTPLogin> createState() => _OTPLoginState();
 }
 
+Constant constant = Constant();
+LogicApi logicApi = LogicApi();
+ModelSharePreferences modelSharePreferences = ModelSharePreferences();
+
 class _OTPLoginState extends State<OTPLogin> {
   //
 
+  String? storedNoHp;
+  String rotatedText = "";
+  String textRotate = "";
+  String data_nilai = "";
+  String process = "";
+
   ///FOR 'OTP'
   OtpFieldController otpController = OtpFieldController();
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
   /// FOR BUTTON "RESEND OTP"
   bool isResendOTPPressed = false;
@@ -43,6 +60,13 @@ class _OTPLoginState extends State<OTPLogin> {
   @override
   void initState() {
     super.initState();
+    getStoredNoHp();
+
+    modelSharePreferences.dataShareprefrences().then((data) {
+      setState(() {
+        process = data['process_steps']!;
+      });
+    });
 
     // Set waktu akhir, contoh 1 menit dari waktu sekarang
     endTime = DateTime.now().add(const Duration(minutes: 1));
@@ -50,6 +74,15 @@ class _OTPLoginState extends State<OTPLogin> {
     // Mulai timer mundur
     timer = Timer.periodic(const Duration(seconds: 0), (Timer t) {
       setState(() {});
+    });
+  }
+
+  Future<void> getStoredNoHp() async {
+    // Retrieve the phone number (noHp) from secure storage
+    String? noHp = await secureStorage.read(key: 'nomorHp');
+
+    setState(() {
+      storedNoHp = noHp;
     });
   }
 
@@ -166,12 +199,19 @@ class _OTPLoginState extends State<OTPLogin> {
                     outlineBorderRadius: 5,
                     style: const TextStyle(fontSize: 15),
                     onChanged: (pin) {
-                      if (kDebugMode) {
-                        print("Changed: $pin");
+                      setState(() {
+                        textRotate =
+                            storedNoHp! + constant.delimeterRegistration + pin;
+
+                        rotatedText = Rotasi.rotateText(textRotate, 15);
+
+                        data_nilai = base64Encode(utf8.encode(rotatedText));
+                      });
+
+                      if (pin.length == 6) {
+                        print(data_nilai);
+                        logicApi.verifyLogin(context, data_nilai, process);
                       }
-                      // if (pin.isEmpty) {
-                      //   FocusScope.of(context).previousFocus();
-                      // }
                     },
                     onCompleted: (pin) {
                       if (kDebugMode) {

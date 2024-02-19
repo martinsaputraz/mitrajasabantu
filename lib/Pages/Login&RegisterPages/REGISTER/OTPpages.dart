@@ -200,7 +200,8 @@ class _OTPPagesState extends State<OTPPages> {
                       });
 
                       if (pin.length == 6) {
-                        logicApi.verifyOTPRegistrasi(context, data_nilai);
+                        logicApi.verifyOTPRegistrasi(
+                            context, data_nilai, constant.flagnewUser);
                       }
                     },
                   ),

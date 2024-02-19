@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/FORGET_PIN/NewPIN.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/ModalBottomOTPContent.dart';
+import 'package:jasa_bantu/Settings/rotasi.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -40,9 +43,21 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
   bool sendOTPViaSMS = false;
   bool sendOTPViaWhatsApp = false;
 
+  String? storedNoHp;
+  String rotatedText = "";
+  String textRotate = "";
+  String data_nilai = "";
+  String process = "";
+
   @override
   void initState() {
     super.initState();
+
+/*
+    setState(() {
+      process =
+    });
+*/
 
     // Set waktu akhir, contoh 1 menit dari waktu sekarang
     endTime = DateTime.now().add(const Duration(minutes: 1));
@@ -165,12 +180,18 @@ class _OTPPagesFPState extends State<OTPPagesFP> {
                     outlineBorderRadius: 5,
                     style: const TextStyle(fontSize: 15),
                     onChanged: (pin) {
-                      if (kDebugMode) {
-                        print("Changed: $pin");
+                      setState(() {
+                        textRotate =
+                            storedNoHp! + constant.delimeterRegistration + pin;
+
+                        rotatedText = Rotasi.rotateText(textRotate, 15);
+
+                        data_nilai = base64Encode(utf8.encode(rotatedText));
+                      });
+
+                      if (pin.length == 6) {
+                        logicApi.verifyLogin(context, data_nilai, process);
                       }
-                      // if (pin.isEmpty) {
-                      //   FocusScope.of(context).previousFocus();
-                      // }
                     },
                     onCompleted: (pin) {
                       if (kDebugMode) {

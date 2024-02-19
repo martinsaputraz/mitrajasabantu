@@ -222,7 +222,7 @@ class _LoginPagesState extends State<LoginPages> {
                               .substring(1); // Remove the leading '+'
                         }
 
-                        logicApi.LoginBYPhone(context, phoneNumber);
+                        logicApi.LoginApi(context, phoneNumber);
                       }
                     },
                     style: ElevatedButton.styleFrom(
