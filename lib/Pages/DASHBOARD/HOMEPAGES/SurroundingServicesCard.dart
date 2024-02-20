@@ -11,56 +11,60 @@ class SurroundingServices extends StatefulWidget {
 class _SurroundingServicesState extends State<SurroundingServices> {
   List<Map<String, dynamic>> surroundingServicesData = [
     {
-      'title': 'Story Bots',
-      'location': 'Tangerang Selatan',
-      'promoType': 'Promo Gajian',
-      'promoBoxColor': Colors.deepOrange,
-      'serviceName': 'Konsultasi Desain Interior Rumah, Kantor',
-      'timesServicesUsed': '25',
-      'price': '150.000',
-      'discountPercentage': '40%',
-      'discountedPrice': '275.000',
-      'rating': '4.9',
-      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesTitle': 'Story Bots',
+      'surroundingServicesLocation': 'Tangerang Selatan',
+      'surroundingServicesPromoType': 'Promo Gajian',
+      'surroundingServicesPromoBoxColor': Colors.deepOrange,
+      'surroundingServicesName': 'Konsultasi Desain Interior Rumah, Kantor',
+      'surroundingServicesTimesUsed': '25',
+      'surroundingServicesPrice': '150.000',
+      'surroundingServicesDiscountPercentage': '40%',
+      'surroundingServicesDiscountedPrice': '275.000',
+      'surroundingServicesRating': '4.9',
+      'surroundingServicesImagePath':
+          'assets/images/Background_DiscountCard(1).jpg',
     },
     {
-      'title': 'Again Faster',
-      'location': 'Jakarta Utara',
-      'promoType': 'Promo Gajian',
-      'promoBoxColor': Colors.deepOrange,
-      'serviceName': 'Konsultasi Desain Interior Rumah, Kantor',
-      'timesServicesUsed': '39',
-      'price': '150.000',
-      'discountPercentage': '40%',
-      'discountedPrice': '275.000',
-      'rating': '5.0',
-      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesTitle': 'Again Faster',
+      'surroundingServicesLocation': 'Jakarta Utara',
+      'surroundingServicesPromoType': 'Promo Gajian',
+      'surroundingServicesPromoBoxColor': Colors.deepOrange,
+      'surroundingServicesName': 'Konsultasi Desain Interior Rumah, Kantor',
+      'surroundingServicesTimesUsed': '39',
+      'surroundingServicesPrice': '150.000',
+      'surroundingServicesDiscountPercentage': '40%',
+      'surroundingServicesDiscountedPrice': '275.000',
+      'surroundingServicesRating': '5.0',
+      'surroundingServicesImagePath':
+          'assets/images/Background_DiscountCard(1).jpg',
     },
     {
-      'title': 'Anika Lifestyle Service',
-      'location': 'Jakarta Barat',
-      'promoType': 'Promo Gajian',
-      'promoBoxColor': Colors.purple,
-      'serviceName': 'Konsultasi Desain Interior Rumah, Kantor',
-      'timesServicesUsed': '548',
-      'price': '150.000',
-      'discountPercentage': '40%',
-      'discountedPrice': '275.000',
-      'rating': '4.5',
-      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesTitle': 'Anika Lifestyle Service',
+      'surroundingServicesLocation': 'Jakarta Barat',
+      'surroundingServicesPromoType': 'Promo Gajian',
+      'surroundingServicesPromoBoxColor': Colors.purple,
+      'surroundingServicesName': 'Konsultasi Desain Interior Rumah, Kantor',
+      'surroundingServicesTimesUsed': '548',
+      'surroundingServicesPrice': '150.000',
+      'surroundingServicesDiscountPercentage': '40%',
+      'surroundingServicesDiscountedPrice': '275.000',
+      'surroundingServicesRating': '4.5',
+      'surroundingServicesImagePath':
+          'assets/images/Background_DiscountCard(1).jpg',
     },
     {
-      'title': 'Story Bots',
-      'location': 'Tangerang Selatan',
-      'promoType': 'Promo Gajian',
-      'promoBoxColor': Colors.purple,
-      'serviceName': 'Konsultasi Desain Interior Rumah, Kantor',
-      'timesServicesUsed': '120',
-      'price': '150.000',
-      'discountPercentage': '40%',
-      'discountedPrice': '275.000',
-      'rating': '4.4',
-      'imagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesTitle': 'Story Bots',
+      'surroundingServicesLocation': 'Tangerang Selatan',
+      'surroundingServicesPromoType': 'Promo Gajian',
+      'surroundingServicesPromoBoxColor': Colors.purple,
+      'surroundingServicesName': 'Konsultasi Desain Interior Rumah, Kantor',
+      'surroundingServicesTimesUsed': '120',
+      'surroundingServicesPrice': '150.000',
+      'surroundingServicesDiscountPercentage': '40%',
+      'surroundingServicesDiscountedPrice': '275.000',
+      'surroundingServicesRating': '4.4',
+      'surroundingServicesImagePath':
+          'assets/images/Background_DiscountCard(1).jpg',
     },
     // Add more data entries as needed
   ];
@@ -68,51 +72,51 @@ class _SurroundingServicesState extends State<SurroundingServices> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Jasa di sekitar kamu',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      const SizedBox(width: 5),
-                      Image.asset(
-                        'assets/icon/Icon_Home(1).jpg',
-                        height: 30,
-                        width: 30,
-                      ),
-                    ],
-                  ),
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Jasa di sekitar kamu',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    const SizedBox(width: 5),
+                    Image.asset(
+                      'assets/icon/Icon_Home(1).jpg',
+                      height: 30,
+                      width: 30,
+                    ),
+                  ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      surroundingServicesData.length,
-                          (index) => Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: SurroundingServicesWidget(
-                            cardSurroundingServices:
-                            surroundingServicesData[index]),
-                      ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    surroundingServicesData.length,
+                    (index) => Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: SurroundingServicesWidget(
+                          cardSurroundingServices:
+                              surroundingServicesData[index]),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
 
@@ -142,7 +146,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    cardSurroundingServices['imagePath'],
+                    cardSurroundingServices['surroundingServicesImagePath'],
                     height: 100,
                     width: 200,
                     fit: BoxFit.cover,
@@ -165,7 +169,9 @@ class SurroundingServicesWidget extends StatelessWidget {
                       children: [
                         const Icon(Icons.star, color: Colors.white),
                         const SizedBox(width: 5),
-                        Text(cardSurroundingServices['rating'],
+                        Text(
+                            cardSurroundingServices[
+                                'surroundingServicesRating'],
                             style: const TextStyle(color: Colors.white)),
                       ],
                     ),
@@ -180,7 +186,8 @@ class SurroundingServicesWidget extends StatelessWidget {
                     radius: 40,
                     backgroundColor: Colors.brown.shade800,
                     backgroundImage: showImage
-                        ? AssetImage(cardSurroundingServices['imagePath'])
+                        ? AssetImage(cardSurroundingServices[
+                            'surroundingServicesImagePath'])
                         : null,
                     child: showImage ? null : const Text('EP'),
                   ),
@@ -196,7 +203,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                   Expanded(
                     child: Flexible(
                       child: Text(
-                        cardSurroundingServices['title'],
+                        cardSurroundingServices['surroundingServicesTitle'],
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: const TextStyle(
@@ -217,7 +224,7 @@ class SurroundingServicesWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
               child: Text(
-                cardSurroundingServices['location'],
+                cardSurroundingServices['surroundingServicesLocation'],
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black45,
@@ -240,20 +247,23 @@ class SurroundingServicesWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
-                    color: cardSurroundingServices['promoBoxColor'],
+                    color: cardSurroundingServices[
+                        'surroundingServicesPromoBoxColor'],
                   ),
                 ),
                 child: Row(
                   children: [
                     Icon(
                       Icons.confirmation_num_outlined,
-                      color: cardSurroundingServices['promoBoxColor'],
+                      color: cardSurroundingServices[
+                          'surroundingServicesPromoBoxColor'],
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      cardSurroundingServices['promoType'],
+                      cardSurroundingServices['surroundingServicesPromoType'],
                       style: TextStyle(
-                          color: cardSurroundingServices['promoBoxColor']),
+                          color: cardSurroundingServices[
+                              'surroundingServicesPromoBoxColor']),
                     ),
                   ],
                 ),
@@ -265,7 +275,7 @@ class SurroundingServicesWidget extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Flexible(
                 child: Text(
-                  cardSurroundingServices['serviceName'],
+                  cardSurroundingServices['surroundingServicesName'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: const TextStyle(
@@ -282,7 +292,7 @@ class SurroundingServicesWidget extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    '${cardSurroundingServices['timesServicesUsed']}x',
+                    '${cardSurroundingServices['surroundingServicesTimesUsed']}x',
                     style: const TextStyle(
                       color: Colors.black45,
                       fontWeight: FontWeight.bold,
@@ -314,7 +324,7 @@ class SurroundingServicesWidget extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Rp${cardSurroundingServices['price']}',
+                    'Rp${cardSurroundingServices['surroundingServicesPrice']}',
                     style: const TextStyle(
                       color: Colors.deepOrange,
                       fontSize: 20,
@@ -332,7 +342,7 @@ class SurroundingServicesWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10),
               child: Row(
                 children: [
                   const Icon(
@@ -341,7 +351,8 @@ class SurroundingServicesWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    cardSurroundingServices['discountPercentage'],
+                    cardSurroundingServices[
+                        'surroundingServicesDiscountPercentage'],
                     style: const TextStyle(
                       color: Colors.red,
                       fontSize: 15,
@@ -350,7 +361,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    'Rp${cardSurroundingServices['discountedPrice']}',
+                    'Rp${cardSurroundingServices['surroundingServicesDiscountedPrice']}',
                     style: const TextStyle(
                       decoration: TextDecoration.lineThrough,
                       color: Colors.black45,

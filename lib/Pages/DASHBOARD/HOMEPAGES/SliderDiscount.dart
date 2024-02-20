@@ -3,61 +3,60 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class DiscountSlide {
   DiscountSlide({
-    required this.title,
-    required this.height,
-    required this.color,
+    required this.discountSliderTitle,
+    required this.discountSliderHeight,
+    required this.discountSliderColor,
   });
 
-  final Color color;
-  final double height;
-  final String title;
+  final Color discountSliderColor;
+  final double discountSliderHeight;
+  final String discountSliderTitle;
 }
 
-var slides = List.generate(
+var discountSlides = List.generate(
   6,
-      (index) => DiscountSlide(
-    title: 'Slide ${index + 1}',
-    height: 100.0 + index * 50,
-    color: Colors.primaries[index % Colors.primaries.length],
+  (index) => DiscountSlide(
+    discountSliderTitle: 'Slide ${index + 1}',
+    discountSliderHeight: 100.0 + index * 50,
+    discountSliderColor: Colors.primaries[index % Colors.primaries.length],
   ),
 );
 
-final List<Widget> sliders = slides
+final List<Widget> discountSliders = discountSlides
     .map(
       (item) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-    child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-      child: Container(
-        color: item.color,
-        width: double.infinity,
-        height: item.height,
-        child: Center(
-          child: Text(
-            item.title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+          child: Container(
+            color: item.discountSliderColor,
+            width: double.infinity,
+            height: item.discountSliderHeight,
+            child: Center(
+              child: Text(
+                item.discountSliderTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
       ),
-    ),
-  ),
-)
+    )
     .toList();
 
 class SliderDiscount extends StatelessWidget {
-  SliderDiscount({Key? key}) : super(key: key);
-
+  const SliderDiscount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Container(
       constraints: const BoxConstraints(
-        maxHeight: 320,
+        maxHeight: 300,
       ),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -65,7 +64,7 @@ class SliderDiscount extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             decoration: const BoxDecoration(color: Colors.white),
             child: const Row(
               children: [
@@ -98,7 +97,7 @@ class SliderDiscount extends StatelessWidget {
                   enableInfiniteScroll: true,
                   // slideIndicator: const CircularSlideIndicator(),
                 ),
-                items: sliders,
+                items: discountSliders,
               ),
             ),
           ),
@@ -115,7 +114,7 @@ class SliderDiscount extends StatelessWidget {
                   // );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white54,
+                  backgroundColor: Colors.white70,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -125,7 +124,7 @@ class SliderDiscount extends StatelessWidget {
                   children: [
                     Text(
                       'Lihat semua diskon',
-                      style: TextStyle(color: Colors.black54, fontSize: 18),
+                      style: TextStyle(color: Colors.black87, fontSize: 18),
                     ),
                   ],
                 ),

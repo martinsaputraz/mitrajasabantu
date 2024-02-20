@@ -6,7 +6,7 @@ class MyCurrentLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
       ),
         padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),

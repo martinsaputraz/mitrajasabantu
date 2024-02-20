@@ -8,7 +8,6 @@ class HelpPages extends StatefulWidget {
 }
 
 class _HelpPagesState extends State<HelpPages> {
-  TextEditingController searchController = TextEditingController();
 
   List<Map<String, dynamic>> bantuanListViewData = [
     {

@@ -9,131 +9,131 @@ class GridMenu extends StatefulWidget {
 
 class _GridMenuState extends State<GridMenu> {
   /// LIST MENU GRID
-  final List<Map<String, dynamic>> menuItems = [
+  final List<Map<String, dynamic>> gridMenuItems = [
     {
-      'icon': Icons.grid_view_rounded,
-      'text': 'Kategori',
-      'color': Colors.purpleAccent,
-      'route': '/home',
+      'gridMenuIcon': Icons.grid_view_rounded,
+      'gridMenuText': 'Kategori',
+      'gridMenuColor': Colors.purpleAccent,
+      'gridMenuRoutes': '/home',
     },
     {
-      'icon': Icons.credit_card,
-      'text': 'Perbankan',
-      'color': Colors.blueAccent,
-      'route': '/cart',
+      'gridMenuIcon': Icons.credit_card,
+      'gridMenuText': 'Perbankan',
+      'gridMenuColor': Colors.blueAccent,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.fastfood,
-      'text': 'Makanan',
-      'color': Colors.green,
-      'route': '/cart',
+      'gridMenuIcon': Icons.fastfood,
+      'gridMenuText': 'Makanan',
+      'gridMenuColor': Colors.green,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.shopping_basket,
-      'text': 'Kebutuhan',
-      'color': Colors.pinkAccent,
-      'route': '/cart',
+      'gridMenuIcon': Icons.shopping_basket,
+      'gridMenuText': 'Kebutuhan',
+      'gridMenuColor': Colors.pinkAccent,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.health_and_safety,
-      'text': 'Kesehatan',
-      'color': Colors.tealAccent,
-      'route': '/cart',
+      'gridMenuIcon': Icons.health_and_safety,
+      'gridMenuText': 'Kesehatan',
+      'gridMenuColor': Colors.tealAccent,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.water_drop,
-      'text': 'Air',
-      'color': Colors.green,
-      'route': '/cart',
+      'gridMenuIcon': Icons.water_drop,
+      'gridMenuText': 'Air',
+      'gridMenuColor': Colors.green,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.fitness_center,
-      'text': 'Olahraga',
-      'color': Colors.pink,
-      'route': '/cart',
+      'gridMenuIcon': Icons.fitness_center,
+      'gridMenuText': 'Olahraga',
+      'gridMenuColor': Colors.pink,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.assignment,
-      'text': 'Asuransi',
-      'color': Colors.orangeAccent,
-      'route': '/cart',
+      'gridMenuIcon': Icons.assignment,
+      'gridMenuText': 'Asuransi',
+      'gridMenuColor': Colors.orangeAccent,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.car_rental,
-      'text': 'Kendaraan',
-      'color': Colors.blue,
-      'route': '/cart',
+      'gridMenuIcon': Icons.car_rental,
+      'gridMenuText': 'Kendaraan',
+      'gridMenuColor': Colors.blue,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.healing,
-      'text': 'Perawatan',
-      'color': Colors.brown,
-      'route': '/cart',
+      'gridMenuIcon': Icons.healing,
+      'gridMenuText': 'Perawatan',
+      'gridMenuColor': Colors.brown,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.restaurant,
-      'text': 'Restoran',
-      'color': Colors.pink,
-      'route': '/cart',
+      'gridMenuIcon': Icons.restaurant,
+      'gridMenuText': 'Restoran',
+      'gridMenuColor': Colors.pink,
+      'gridMenuRoutes': '/cart',
     },
     {
-      'icon': Icons.build_circle_outlined,
-      'text': 'Teknologi',
-      'color': Colors.yellow,
-      'route': '/cart',
+      'gridMenuIcon': Icons.build_circle_outlined,
+      'gridMenuText': 'Teknologi',
+      'gridMenuColor': Colors.yellow,
+      'gridMenuRoutes': '/cart',
     },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 180,
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-        child: GridView.builder(
-          itemCount: menuItems.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 6,
-            crossAxisSpacing: 1,
-            mainAxisSpacing: 30,
-          ),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            final item = menuItems[index];
-            return GridTile(
-              child: MenuTile(
-                icon: item['icon'],
-                text: item['text'],
-                boxColor: item['color'],
-                onPressed: () {
-                  Navigator.pushNamed(context, item['route']);
-                },
-                route: item['route'],
-              ),
-            );
-          },
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: GridView.builder(
+        itemCount: gridMenuItems.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 6,
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 30,
         ),
-      );
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          final item = gridMenuItems[index];
+          return GridTile(
+            child: GridMenuTile(
+              gridMenuIcon: item['gridMenuIcon'],
+              gridMenuText: item['gridMenuText'],
+              gridMenuBoxColor: item['gridMenuColor'],
+              onPressed: () {
+                Navigator.pushNamed(context, item['gridMenuRoutes']);
+              },
+              gridMenuRoutes: item['gridMenuRoutes'],
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
-class MenuTile extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final Color boxColor;
+class GridMenuTile extends StatelessWidget {
+  final IconData gridMenuIcon;
+  final String gridMenuText;
+  final Color gridMenuBoxColor;
   final VoidCallback onPressed;
-  final String route;
+  final String gridMenuRoutes;
 
-  const MenuTile({
+  const GridMenuTile({
     super.key,
-    required this.icon,
-    required this.text,
-    required this.boxColor,
+    required this.gridMenuIcon,
+    required this.gridMenuText,
+    required this.gridMenuBoxColor,
     required this.onPressed,
-    required this.route,
+    required this.gridMenuRoutes,
   });
 
   @override
@@ -148,18 +148,18 @@ class MenuTile extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: boxColor,
+                color: gridMenuBoxColor,
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                icon,
+                gridMenuIcon,
                 color: Colors.white,
               ),
             ),
           ),
           const SizedBox(height: 5),
           Text(
-            text,
+            gridMenuText,
             style: const TextStyle(fontSize: 10),
           ),
         ],

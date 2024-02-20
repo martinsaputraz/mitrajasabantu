@@ -9,104 +9,102 @@ class VendorCard extends StatefulWidget {
 }
 
 class _VendorCardState extends State<VendorCard> {
-
   List<Map<String, dynamic>> vendorCardData = [
     {
-      'bannerPictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'profilePictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'title': 'Anika Service Lifestyle',
-      'location': 'Jakarta Barat',
-      'rating': '4.9',
-      'totalFollowers': '500+',
+      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardTitle': 'Anika Service Lifestyle',
+      'vendorCardLocation': 'Jakarta Barat',
+      'vendorCardRating': '4.9',
+      'vendorCardTotalFollowers': '500+',
     },
     {
-      'bannerPictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'profilePictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'title': 'Fleify Landscape',
-      'location': 'Surabaya',
-      'rating': '4.6',
-      'totalFollowers': '6,2K+',
+      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardTitle': 'Fleify Landscape',
+      'vendorCardLocation': 'Surabaya',
+      'vendorCardRating': '4.6',
+      'vendorCardTotalFollowers': '6,2K+',
     },
     {
-      'bannerPictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'profilePictVendor': 'assets/images/Background_DiscountCard(1).jpg',
-      'title': 'Jennifer Andrea',
-      'location': 'Tangerang Selatan',
-      'rating': '4.7',
-      'totalFollowers': '8,6K+',
+      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardTitle': 'Jennifer Andrea',
+      'vendorCardLocation': 'Tangerang Selatan',
+      'vendorCardRating': '4.7',
+      'vendorCardTotalFollowers': '8,6K+',
     },
-
     // Add more data entries as needed
   ];
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Column(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      const Row(
-                        children: [
-                          Icon(Icons.shopping_bag_outlined),
-                          SizedBox(width: 5),
-                          Text(
-                            'Vendor',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      const Row(
-                        children: [
-                          Text(
-                            'Vendor pilihan untuk kebutuhanmu',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(width: 5),
-                          Icon(Icons.star),
-                        ],
-                      ),
-                      Container(
-                        child: const Text(
-                          'Informasi lengkap dan menarik tentang keperluan rumah atau pribadi ada disini',
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          child: Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: Column(
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.shopping_bag_outlined),
+                        SizedBox(width: 5),
+                        Text(
+                          'Vendor',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const Row(
+                      children: [
+                        Text(
+                          'Vendor pilihan untuk kebutuhanmu',
                           style: TextStyle(
-                            color: Colors.black45,
-                          ),
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(Icons.star),
+                      ],
+                    ),
+                    Container(
+                      child: const Text(
+                        'Informasi lengkap dan menarik tentang keperluan rumah atau pribadi ada disini',
+                        style: TextStyle(
+                          color: Colors.black45,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
 
-                //
-                SingleChildScrollView(
+              //
+              Container(
+                padding: const EdgeInsets.fromLTRB(15, 15, 0, 10),
+                child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(
                       vendorCardData.length,
-                          (index) => Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SurroundingServicesWidget(
-                            cardDataVendor: vendorCardData[index]),
-                      ),
+                      (index) => SurroundingServicesWidget(
+                          cardDataVendor: vendorCardData[index]),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
 
@@ -137,7 +135,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    cardDataVendor['bannerPictVendor'],
+                    cardDataVendor['vendorCardBannerPict'],
                     height: 100,
                     width: 200,
                     fit: BoxFit.cover,
@@ -153,7 +151,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                       radius: 40,
                       backgroundColor: Colors.brown.shade800,
                       backgroundImage: showImage
-                          ? AssetImage(cardDataVendor['profilePictVendor'])
+                          ? AssetImage(cardDataVendor['vendorCardProfilePict'])
                           : null,
                       child: showImage ? null : const Text('EP'),
                     ),
@@ -173,7 +171,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                     Expanded(
                       child: Flexible(
                         child: Text(
-                          cardDataVendor['title'],
+                          cardDataVendor['vendorCardTitle'],
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           textAlign: TextAlign.center,
@@ -197,7 +195,7 @@ class SurroundingServicesWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(bottom: 40),
               child: Text(
-                cardDataVendor['location'],
+                cardDataVendor['vendorCardLocation'],
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black45,
@@ -231,12 +229,12 @@ class SurroundingServicesWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    cardDataVendor['rating'],
+                    cardDataVendor['vendorCardRating'],
                     style: const TextStyle(color: Colors.black54, fontSize: 15),
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '(${cardDataVendor['totalFollowers']})',
+                    '(${cardDataVendor['vendorCardTotalFollowers']})',
                     style: const TextStyle(color: Colors.black54, fontSize: 15),
                   ),
                 ],

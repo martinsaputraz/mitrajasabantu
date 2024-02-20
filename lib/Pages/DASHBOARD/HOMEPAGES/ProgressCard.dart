@@ -9,8 +9,7 @@ class ProgressCard extends StatefulWidget {
 }
 
 class _ProgressCardState extends State<ProgressCard> {
-  /// FOR "SEARCH"
-  TextEditingController searchController = TextEditingController();
+  //
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class _ProgressCardState extends State<ProgressCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  ///
+                  /// "STATUS" PROGRESS CARD
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                     child: const Row(
@@ -50,7 +49,7 @@ class _ProgressCardState extends State<ProgressCard> {
                     ),
                   ),
 
-                  /// TITLE CARD PROGRESS
+                  /// "TITLE" PROGRESS CARD
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                     child: const Text(
@@ -60,7 +59,7 @@ class _ProgressCardState extends State<ProgressCard> {
                     ),
                   ),
 
-                  /// SUB TEXT MITRA ACCOUNT
+                  /// "SUB TEXT MITRA ACCOUNT" PROGRESS CARD
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: const Row(
@@ -83,7 +82,7 @@ class _ProgressCardState extends State<ProgressCard> {
                     child: Container(),
                   ),
 
-                  ///
+                  /// "TIMES TRANSACTION" PROGRESS CARD
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -114,7 +113,7 @@ class _ProgressCardState extends State<ProgressCard> {
               ),
             ),
 
-            /// BUTTON "LIHAT SEMUA PESANAN"
+            /// "LIHAT SEMUA PESANAN" BUTTON PROGRESS CARD
             Row(
               children: [
                 Expanded(

@@ -11,19 +11,19 @@ class _ArticleContentState extends State<ArticleContent> {
 
   List<Map<String, dynamic>> articleListViewData = [
     {
-      'title': 'Apa itu efek rumah kaca? Dampak dan Penyebabnya',
+      'articleTitle': 'Apa itu efek rumah kaca? Dampak dan Penyebabnya',
       'articleCategory': 'Rumah',
       'articleImages': 'assets/images/Background_DiscountCard(1).jpg',
       'articleRoutes': '/articleRoutes',
     },
     {
-      'title': 'Hal yang Harus Diperhatikan Kalau Cari Mobil Bekas',
+      'articleTitle': 'Hal yang Harus Diperhatikan Kalau Cari Mobil Bekas',
       'articleCategory': 'Kendaraan',
       'articleImages': 'assets/images/Background_DiscountCard(1).jpg',
       'articleRoutes': '/articleRoutes',
     },
     {
-      'title': 'Ini 10 Tips Perawatan Diri untuk Perempuan',
+      'articleTitle': 'Ini 10 Tips Perawatan Diri untuk Perempuan',
       'articleCategory': 'Perawatan',
       'articleImages': 'assets/images/Background_DiscountCard(1).jpg',
       'articleRoutes': '/articleRoutes',
@@ -99,7 +99,7 @@ class _ArticleContentState extends State<ArticleContent> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    articleData['title'],
+                                    articleData['articleTitle'],
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     style: const TextStyle(

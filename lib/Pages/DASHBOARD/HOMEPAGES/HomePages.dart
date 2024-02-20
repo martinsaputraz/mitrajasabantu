@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
-import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ArticleContent.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/DiscountCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/GridMenu.dart';
-import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/HelpPages.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ImagesAds.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/MyCurrentLocation.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ProgressCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/PromotionCard.dart';
-import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderAds.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderDiscount.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderImages.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SurroundingServicesCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/VendorCard.dart';
@@ -23,10 +22,7 @@ class HomePages extends StatefulWidget {
 
 class _HomePagesState extends State<HomePages> {
   /// FOR "SEARCH"
-  TextEditingController searchController = TextEditingController();
-
-  ///
-  int itemCount = 4;
+  TextEditingController searchHomePagesController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,6 @@ class _HomePagesState extends State<HomePages> {
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
           automaticallyImplyLeading: false,
-
           title: Row(
             children: [
               Expanded(
@@ -49,23 +44,24 @@ class _HomePagesState extends State<HomePages> {
                     color: Colors.black12,
                   ),
                   child: TextField(
-                    controller: searchController,
+                    controller: searchHomePagesController,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       hintText: 'Cari di Jasa Bantu...',
                       border: InputBorder.none,
-                      prefixIcon: const Icon(Icons.search, color: Colors.black45),
-                    suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.qr_code_scanner,
-                        color: Colors.black45,
-                      ), onPressed: () {  },
-                    ),
+                      prefixIcon:
+                          const Icon(Icons.search, color: Colors.black45),
+                      suffixIcon: IconButton(
+                        icon: const Icon(
+                          Icons.qr_code_scanner,
+                          color: Colors.black45,
+                        ),
+                        onPressed: () {},
+                      ),
                     ),
                   ),
                 ),
               ),
-
             ],
           ),
           actions: [
@@ -104,48 +100,47 @@ class _HomePagesState extends State<HomePages> {
         shrinkWrap: true,
         addAutomaticKeepAlives: false,
         cacheExtent: 100.0,
-        children: [
+        children: const [
           /// MY CURRENT LOCATION
-          const MyCurrentLocation(),
+          MyCurrentLocation(),
 
           /// SLIDER ADS IMAGES
-          const SliderImages(),
+          SliderImages(),
 
           /// PROMOTION CARD
-          const PromotionCard(),
+          PromotionCard(),
 
           /// GRID MENU
-          const GridMenu(),
+          GridMenu(),
 
           /// PROGRESS CARD
-          const ProgressCard(),
+          ProgressCard(),
 
           /// PROMO CARD
-          const DiscountCard(),
+          DiscountCard(),
 
           /// IMAGES ADS
-          //
+          ImagesAds(),
 
-          /// RECOMMENDED GRID SERVICES CARD
-          //
+          // /// RECOMMENDED GRID SERVICES CARD
+          // RecommendedServices(),
 
           /// VENDOR CARD
-          const VendorCard(),
+          VendorCard(),
 
           /// SURROUNDING SERVICES CARD
-          const SurroundingServices(),
+          SurroundingServices(),
 
           /// SLIDER ADS
-          SliderAds(),
+          SliderDiscount(),
 
           /// ARTICLE CONTENT
-          const ArticleContent(),
-
-          /// HELP SERVICES
-          const HelpPages(),
+          // const ArticleContent(),
+          //
+          // /// HELP SERVICES
+          // const HelpPages(),
           //
         ],
-
       ),
     );
   }
