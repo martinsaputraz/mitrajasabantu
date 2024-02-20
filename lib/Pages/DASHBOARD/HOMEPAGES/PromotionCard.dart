@@ -15,35 +15,38 @@ class _PromotionCardState extends State<PromotionCard> {
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
       'promoColorBox' : Colors.blue,
-      'backgroundColor': Colors.blue[200],
+      'backgroundColor': Colors.blue[100],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Gratis Ongkir',
       'imagePath': 'assets/images/Ads(1).jpg',
       'promoColorBox' : Colors.deepOrange,
-      'backgroundColor': Colors.deepOrange[200],
+      'backgroundColor': Colors.deepOrange[100],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
       'promoColorBox' : Colors.amber,
-      'backgroundColor': Colors.amber[200],
+      'backgroundColor': Colors.amber[100],
     },
     {
       'title': 'Salon Anabul Kesayangan',
       'promoText': 'Promo 50%',
       'imagePath': 'assets/images/Ads(1).jpg',
       'promoColorBox' : Colors.green,
-      'backgroundColor': Colors.green[200],
+      'backgroundColor': Colors.green[100],
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
         padding: const EdgeInsets.all(10),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -57,6 +60,8 @@ class _PromotionCardState extends State<PromotionCard> {
                 2, // Rasio aspek dari setiap item dalam grid (lebar / tinggi)
           ),
           itemCount: cardData.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             return Card(
               color: cardData[index]['backgroundColor'],
@@ -129,7 +134,6 @@ class _PromotionCardState extends State<PromotionCard> {
             );
           },
         ),
-      ),
-    );
+      );
   }
 }

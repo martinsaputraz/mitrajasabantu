@@ -14,10 +14,8 @@ class _ProgressCardState extends State<ProgressCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      ///
-      body: Container(
-        padding: const EdgeInsets.all(20),
+    return Container(
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             Container(
@@ -155,7 +153,6 @@ class _ProgressCardState extends State<ProgressCard> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

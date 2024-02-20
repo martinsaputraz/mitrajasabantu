@@ -86,9 +86,12 @@ class _GridMenuState extends State<GridMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+    return Container(
+      height: 200,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: GridView.builder(
           itemCount: menuItems.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -96,6 +99,8 @@ class _GridMenuState extends State<GridMenu> {
             crossAxisSpacing: 1,
             mainAxisSpacing: 30,
           ),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final item = menuItems[index];
             return GridTile(
@@ -111,8 +116,7 @@ class _GridMenuState extends State<GridMenu> {
             );
           },
         ),
-      ),
-    );
+      );
   }
 }
 

@@ -41,9 +41,7 @@ class _VendorCardState extends State<VendorCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Column(
+    return Column(
         children: [
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -108,8 +106,7 @@ class _VendorCardState extends State<VendorCard> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
 

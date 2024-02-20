@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ArticleContent.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/DiscountCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/GridMenu.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/HelpPages.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/MyCurrentLocation.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/ProgressCard.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/PromotionCard.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderAds.dart';
 import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SliderImages.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/SurroundingServicesCard.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/HOMEPAGES/VendorCard.dart';
 
 AssetsColor assetsColor = AssetsColor();
 
@@ -27,20 +32,12 @@ class _HomePagesState extends State<HomePages> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.white30,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
           automaticallyImplyLeading: false,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.qr_code_scanner,
-              color: Colors.black45,
-            ),
-            onPressed: () {
-              //
-            },
-          ),
+
           title: Row(
             children: [
               Expanded(
@@ -54,14 +51,21 @@ class _HomePagesState extends State<HomePages> {
                   child: TextField(
                     controller: searchController,
                     keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Cari di Jasa Bantu...',
                       border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search, color: Colors.black45),
+                      prefixIcon: const Icon(Icons.search, color: Colors.black45),
+                    suffixIcon: IconButton(
+                      icon: const Icon(
+                        Icons.qr_code_scanner,
+                        color: Colors.black45,
+                      ), onPressed: () {  },
+                    ),
                     ),
                   ),
                 ),
               ),
+
             ],
           ),
           actions: [
@@ -100,31 +104,48 @@ class _HomePagesState extends State<HomePages> {
         shrinkWrap: true,
         addAutomaticKeepAlives: false,
         cacheExtent: 100.0,
-        children: const [
+        children: [
           /// MY CURRENT LOCATION
-          MyCurrentLocation(),
+          const MyCurrentLocation(),
 
           /// SLIDER ADS IMAGES
-          SliderImages(),
+          const SliderImages(),
 
           /// PROMOTION CARD
-          PromotionCard(),
+          const PromotionCard(),
 
           /// GRID MENU
-          GridMenu(),
+          const GridMenu(),
 
           /// PROGRESS CARD
-          ProgressCard(),
+          const ProgressCard(),
 
           /// PROMO CARD
-          DiscountCard(),
+          const DiscountCard(),
 
+          /// IMAGES ADS
+          //
 
+          /// RECOMMENDED GRID SERVICES CARD
+          //
 
+          /// VENDOR CARD
+          const VendorCard(),
 
+          /// SURROUNDING SERVICES CARD
+          const SurroundingServices(),
 
+          /// SLIDER ADS
+          SliderAds(),
+
+          /// ARTICLE CONTENT
+          const ArticleContent(),
+
+          /// HELP SERVICES
+          const HelpPages(),
           //
         ],
+
       ),
     );
   }

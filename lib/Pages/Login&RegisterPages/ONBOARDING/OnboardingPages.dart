@@ -4,6 +4,7 @@ import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Assets/AssetsIcon.dart';
 import 'package:jasa_bantu/Assets/AssetsImage.dart';
 import 'package:jasa_bantu/Assets/AssetsLogo.dart';
+import 'package:jasa_bantu/Pages/DASHBOARD/DashboardPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/LoginPages.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingContent.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/RegisterPages.dart';
@@ -96,7 +97,12 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
                     onPressed: () async {
-                      _handleGoogleSignIn();
+                      // _handleGoogleSignIn();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DashboardPages()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonLoginwithGoogle,

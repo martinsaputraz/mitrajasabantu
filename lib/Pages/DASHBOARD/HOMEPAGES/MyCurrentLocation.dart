@@ -5,9 +5,11 @@ class MyCurrentLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
         child: Row(
           children: [
             Container(
@@ -46,7 +48,6 @@ class MyCurrentLocation extends StatelessWidget {
             const Icon(Icons.expand_more_rounded),
           ],
         ),
-      ),
-    );
+      );
   }
 }

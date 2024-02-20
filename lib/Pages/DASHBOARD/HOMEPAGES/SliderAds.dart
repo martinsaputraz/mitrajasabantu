@@ -56,78 +56,10 @@ class SliderAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.qr_code_scanner,
-              color: Colors.black45,
-            ),
-            onPressed: () {
-              // Handle QR code scanner button press
-            },
-          ),
-          title: Row(
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black12,
-                  ),
-                  child: TextField(
-                    controller: searchController,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      hintText: 'Cari di Jasa Bantu...',
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search, color: Colors.black45),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // Handle local mall button press
-              },
-              icon: const Icon(
-                Icons.local_mall_outlined,
-                color: Colors.black45,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                // Handle receipt button press
-              },
-              icon: const Icon(
-                Icons.receipt_outlined,
-                color: Colors.black45,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                // Handle menu button press
-              },
-              icon: const Icon(
-                Icons.menu_outlined,
-                color: Colors.black45,
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Column(
+    return Container(decoration: BoxDecoration(color: Colors.white),child: Column(
         children: [
           Container(
+
             padding: const EdgeInsets.all(10),
             child: Row(
               children: [
@@ -135,7 +67,7 @@ class SliderAds extends StatelessWidget {
                   'Ada diskon member baru',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 20,
                   ),
                 ),
                 const SizedBox(width: 5),
@@ -165,7 +97,7 @@ class SliderAds extends StatelessWidget {
             ),
           ),
 
-          /// BUTTON "LANJUTKAN"
+          /// BUTTON "LIHAT SEMUA DISKON"
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
             child: Center(
@@ -177,7 +109,7 @@ class SliderAds extends StatelessWidget {
                   // );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white24,
+                  backgroundColor: Colors.white54,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -195,7 +127,7 @@ class SliderAds extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+    ),
+      );
   }
 }

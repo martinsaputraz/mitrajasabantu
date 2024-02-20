@@ -12,14 +12,7 @@ class DiscountCard extends StatefulWidget {
 }
 
 class _DiscountCardState extends State<DiscountCard> {
-<<<<<<< HEAD
-
   List<Map<String, dynamic>> discountCardData = [
-=======
-  TextEditingController searchController = TextEditingController();
-
-  List<Map<String, dynamic>> cardDataList = [
->>>>>>> origin/main
     {
       'title': 'Express Elite',
       'location': 'Jakarta Barat',
@@ -52,12 +45,10 @@ class _DiscountCardState extends State<DiscountCard> {
     },
     // Add more data entries as needed
   ];
-<<<<<<< HEAD
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
           Container(
             padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
@@ -77,7 +68,7 @@ class _DiscountCardState extends State<DiscountCard> {
                       ),
                       const SizedBox(width: 5),
                       Image.asset(
-                        'assets/icons/Icon_ShoppingBag_(Transparent).png',
+                        'assets/icon/Icon_ShoppingBag_(Transparent).png',
                         height: 30,
                         width: 30,
                       ),
@@ -96,33 +87,15 @@ class _DiscountCardState extends State<DiscountCard> {
                         child: DiscountCardWidget(cardDataDiscount: discountCardData[index]),
                       ),
                     ),
-=======
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(0),
-        child: Column(
-          children: [
-            Container(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                    cardDataList.length,
-                        (index) => Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: CardWidget(cardData: cardDataList[index]),
-                    ),
+
                   ),
                 ),
+    ],
               ),
             ),
           ],
-        ),
-      ),
-    );
+        );
   }
 }
 
@@ -190,7 +163,6 @@ class CardWidget extends StatelessWidget {
                     backgroundImage:
                     showImage ? AssetImage(cardData['imagePath']) : null,
                     child: showImage ? null : const Text('EP'),
->>>>>>> origin/main
                   ),
                 ),
                 //

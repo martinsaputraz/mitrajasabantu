@@ -54,14 +54,17 @@ class SliderImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Center(
+    return Container(decoration: BoxDecoration(
+      color: Colors.white,
+    ),child: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Container(
+
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.width,
             ),
+
             child: FlutterCarousel(
               options: CarouselOptions(
                 autoPlay: true,
@@ -77,7 +80,7 @@ class SliderImages extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+    ),
+      );
   }
 }

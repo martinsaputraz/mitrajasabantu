@@ -67,8 +67,7 @@ class _SurroundingServicesState extends State<SurroundingServices> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
           Container(
             padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
@@ -88,7 +87,7 @@ class _SurroundingServicesState extends State<SurroundingServices> {
                       ),
                       const SizedBox(width: 5),
                       Image.asset(
-                        'assets/icons/Icon_Home(1).jpg',
+                        'assets/icon/Icon_Home(1).jpg',
                         height: 30,
                         width: 30,
                       ),
@@ -113,8 +112,7 @@ class _SurroundingServicesState extends State<SurroundingServices> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
 
