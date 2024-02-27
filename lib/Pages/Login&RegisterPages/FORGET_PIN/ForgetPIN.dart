@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/FORGET_PIN/OTPPagesFP.dart';
 
@@ -45,18 +46,26 @@ class _ForgetPINState extends State<ForgetPIN> {
 
           /// "PHONE" TEXT FIELDS
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+            padding: const EdgeInsets.all(20),
             child: Center(
-              child: TextField(
-                controller: _phoneNumberFP,
-                keyboardType: TextInputType.phone,
+              child: IntlPhoneField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    labelText: 'Nomor Handphone',
-                    prefixIcon:
-                        Icon(Icons.phone, color: assetsColor.textSetPINArea),
-                    prefixText: '+62 '),
+                  labelText: 'Nomor Handphone',
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon:
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
+                ),
+                initialCountryCode: 'ID',
+                // Set the initial country code to Indonesia
+                // Limit selection to Indonesia
+                onChanged: (phone) {
+                  setState(() {
+                    // phoneNumberLogin = phone.completeNumber;
+                  });
+                },
+                inputFormatters: const [],
               ),
             ),
           ),

@@ -124,22 +124,16 @@ class _InputNameState extends State<InputName> {
                   if (_inputName.text == "") {
                     print("HELO WORLD");
                   } else {
-                    setState(() {
-                      if (storedNoHp == "") {
-                        textRotate = ID! + constant.delimeterRegistration +
-                            storedNoHp!;
+                    textRotate =
+                        ID! + constant.delimeterRegistration + storedNoHp!;
 
-                        rotatedText = Rotasi.rotateText(textRotate, 15);
-                        data_nilai = base64Encode(utf8.encode(rotatedText));
-                      }
-                      else {
-                        textRotate =
-                            ID! + constant.delimeterRegistration + storedNoHp!;
-
-                        rotatedText = Rotasi.rotateText(textRotate, 15);
-                        data_nilai = base64Encode(utf8.encode(rotatedText));
-                      }
-                    });
+                    rotatedText = Rotasi.rotateText(textRotate, 15);
+                    data_nilai = base64Encode(utf8.encode(rotatedText));
+                    print(textRotate);
+                    print(rotatedText);
+                    print(ID);
+                    print(storedNoHp);
+                    print(data_nilai);
                     logicApi.setName(context, _inputName.text, data_nilai);
                   }
                 },

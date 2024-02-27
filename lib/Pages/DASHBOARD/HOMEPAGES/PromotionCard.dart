@@ -13,28 +13,32 @@ class _PromotionCardState extends State<PromotionCard> {
     {
       'promotionCardTitle': 'Salon Anabul Kesayangan',
       'promotionCardPromoType': 'Promo 50%',
-      'promotionCardImagePath': 'assets/images/Ads(1).jpg',
+      'promotionCardImagePath':
+          'assets/images/PromoGridContent/PromoGrid(1).png',
       'promotionCardColorBox': Colors.blue,
       'promotionCardBGColor': Colors.blue[50],
     },
     {
       'promotionCardTitle': 'Salon Anabul Kesayangan',
       'promotionCardPromoType': 'Gratis Ongkir',
-      'promotionCardImagePath': 'assets/images/Ads(1).jpg',
+      'promotionCardImagePath':
+          'assets/images/PromoGridContent/PromoGrid(2).png',
       'promotionCardColorBox': Colors.deepOrange,
       'promotionCardBGColor': Colors.deepOrange[50],
     },
     {
       'promotionCardTitle': 'Salon Anabul Kesayangan',
       'promotionCardPromoType': 'Promo 50%',
-      'promotionCardImagePath': 'assets/images/Ads(1).jpg',
+      'promotionCardImagePath':
+          'assets/images/PromoGridContent/PromoGrid(3).png',
       'promotionCardColorBox': Colors.amber,
       'promotionCardBGColor': Colors.amber[50],
     },
     {
       'promotionCardTitle': 'Salon Anabul Kesayangan',
       'promotionCardPromoType': 'Promo 50%',
-      'promotionCardImagePath': 'assets/images/Ads(1).jpg',
+      'promotionCardImagePath':
+          'assets/images/PromoGridContent/PromoGrid(4).png',
       'promotionCardColorBox': Colors.green,
       'promotionCardBGColor': Colors.green[50],
     },
@@ -120,13 +124,13 @@ class _PromotionCardState extends State<PromotionCard> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                     child: Image.asset(
                       promotionCardData[index]['promotionCardImagePath'],
                       fit: BoxFit.cover,
                       height: 100,
-                      width: 60,
+                      width: 50,
                     ),
                   ),
                 ],

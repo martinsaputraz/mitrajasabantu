@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:jasa_bantu/Pages/StarterPages/SplashScreen.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:jasa_bantu/Settings/firebase_options.dart';
@@ -8,6 +9,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
   await Firebase.initializeApp(
@@ -32,7 +35,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final PackageInfo packageInfo;
 
-
   _MyAppState({required this.packageInfo});
 
   @override
@@ -41,12 +43,16 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Jasa Bantu',
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.black87),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
         indicatorColor: assetsColor.indicatorColor,
         inputDecorationTheme: const InputDecorationTheme(),
       ),
-      home: SplashScreen(packageInfo: packageInfo),
+      home: SplashScreen(
+        packageInfo: packageInfo,
+      ),
     );
   }
 }
+
+// packageInfo: packageInfo

@@ -34,18 +34,18 @@ class AssetsColor {
   Color buttonLogin = const Color(0xFF0F0F0F);
   Color borderLoginButton = const Color(0xFFFFFFFF);
   Color buttonRegister = const Color(0xFFFFFFFF);
-  Color indicatorSlide = const Color(0xFFFAAF40);
+  Color indicatorSlide = const Color(0xFFFFFFFF);
 
   // LOGIN PAGES
   Color buttonSwitchLanguage = const Color(0xFFFFFFFF);
-  Color buttonLoginArea = const Color(0xFFFAAF40);
+  Color buttonLoginArea = const Color(0xFF3A3A89);
 
   // PIN LOGIN PAGES
   Color buttonForgetPIN = const Color(0xFFFFFFFF);
   Color borderForgetPINButton = const Color(0x8A000000);
 
   // REGISTER PAGES
-  Color buttonNextRegister = const Color(0xFFFAAF40);
+  Color buttonNextRegister = const Color(0xFF3A3A89);
   Color buttonRegisterwithGoogle = const Color(0xFFFFFFFF);
   Color borderRegisterwithGoogleButton = const Color(0xFF0F0F0F);
 
@@ -53,8 +53,8 @@ class AssetsColor {
   Color borderHelpButton = const Color(0xFF0F0F0F);
   Color buttonHelpButton = const Color(0xFFFFFFFF);
   Color borderOtpField = const Color(0xFF0F0F0F);
-  Color buttonResendOTP = const Color(0xFFFAAF40);
-  Color borderResendOTP = const Color(0xFFFAAF40);
+  Color buttonResendOTP = const Color(0xFF3A3A89);
+  Color borderResendOTP = const Color(0xFF3A3A89);
   Color buttonResendOTPPressed = const Color(0xFFFFFFFF);
   Color borderResendOTPPressed = const Color(0xFF9E9E9E);
   Color buttonOtpMethodButton = const Color(0xFFFFFFFF);
@@ -62,18 +62,18 @@ class AssetsColor {
   Color borderOtpMethodOptButtonUnpressed = const Color(0x1F000000);
   Color borderOtpMethodOptButton = const Color(0xFF0F0F0F);
   Color buttonOtpMethodOptButton = const Color(0xFFFFFFFF);
-  Color buttonSendOTPCode = const Color(0xFFFAAF40);
+  Color buttonSendOTPCode = const Color(0xFF3A3A89);
 
   // SETTING PIN PAGES
-  Color buttonSavePIN = const Color(0xFFFAAF40);
+  Color buttonSavePIN = const Color(0xFF3A3A89);
 
   // DASHBOARD PAGES
-  Color buttonDashboard = const Color(0xFFFAAF40);
+  Color buttonDashboard = const Color(0xFF3A3A89);
 
   // Color buttonLogininDark = const Color(0xFF0F0F0F);
   // Color buttonRegisterinDark = const Color(0xFFFFFFFF);
-  // Color buttonLogRegAreainDark = const Color(0xFFFAAF40);
-  // Color buttonDashboardinDark = const Color(0xFFFAAF40);
+  // Color buttonLogRegAreainDark = const Color(0xFF3A3A89);
+  // Color buttonDashboardinDark = const Color(0xFF3A3A89);
 
   /// TEXT
   // SPLASH SCREEN

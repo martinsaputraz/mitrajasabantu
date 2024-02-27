@@ -1,59 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
-class DiscountSlide {
-  DiscountSlide({
-    required this.discountSliderTitle,
-    required this.discountSliderHeight,
-    required this.discountSliderColor,
-  });
-
-  final Color discountSliderColor;
-  final double discountSliderHeight;
-  final String discountSliderTitle;
-}
-
-var discountSlides = List.generate(
-  6,
-  (index) => DiscountSlide(
-    discountSliderTitle: 'Slide ${index + 1}',
-    discountSliderHeight: 100.0 + index * 50,
-    discountSliderColor: Colors.primaries[index % Colors.primaries.length],
-  ),
-);
-
-final List<Widget> discountSliders = discountSlides
-    .map(
-      (item) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-          child: Container(
-            color: item.discountSliderColor,
-            width: double.infinity,
-            height: item.discountSliderHeight,
-            child: Center(
-              child: Text(
-                item.discountSliderTitle,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    )
-    .toList();
-
 class SliderDiscount extends StatelessWidget {
   const SliderDiscount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<String> imagesSlidesDiscount = [
+      'assets/images/SliderImages/SliderImages(1).png',
+      'assets/images/SliderImages/SliderImages(2).png',
+      'assets/images/SliderImages/SliderImages(3).png',
+      'assets/images/SliderImages/SliderImages(4).png'
+      // Tambahkan path gambar lain jika diperlukan
+    ];
+
+    final List<Widget> imagesSlidersDiscount = imagesSlidesDiscount
+        .map(
+          (item) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+              child: Image.asset(
+                item,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        )
+        .toList();
+
     final deviceSize = MediaQuery.of(context).size;
+
     return Container(
       constraints: const BoxConstraints(
         maxHeight: 300,
@@ -69,14 +46,14 @@ class SliderDiscount extends StatelessWidget {
             child: const Row(
               children: [
                 Text(
-                  'Ada diskon member baru',
+                  'Ada diskon member baru 🍀',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(width: 5),
-                Icon(Icons.energy_savings_leaf)
+                // SizedBox(width: 5),
+                // Icon(Icons.energy_savings_leaf)
               ],
             ),
           ),
@@ -93,11 +70,10 @@ class SliderDiscount extends StatelessWidget {
                   disableCenter: true,
                   viewportFraction: deviceSize.width > 400.0 ? 0.9 : 1.0,
                   height: 150,
-                  indicatorMargin: 12.0,
                   enableInfiniteScroll: true,
-                  // slideIndicator: const CircularSlideIndicator(),
+                  showIndicator: false,
                 ),
-                items: discountSliders,
+                items: imagesSlidersDiscount,
               ),
             ),
           ),
@@ -114,7 +90,7 @@ class SliderDiscount extends StatelessWidget {
                   // );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white70,
+                  backgroundColor: Colors.grey[50],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),

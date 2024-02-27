@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/OTPregister.dart';
 import 'package:jasa_bantu/Settings/logicapi.dart';
 
 AssetsColor assetsColor = AssetsColor();
@@ -21,7 +22,7 @@ LogicApi logicApi = LogicApi();
 class _RegisterPagesState extends State<RegisterPages> {
   //
   /// FOR 'NOMOR HANDPHONE'
-  // TextEditingController _phoneNumber = TextEditingController();
+  TextEditingController registerEmailMitra = TextEditingController();
   String phoneNumberRegis = "";
   String phoneNumber = "";
 
@@ -67,7 +68,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              'Daftar dengan nomor HP Kamu',
+              'Daftar menjadi vendor dengan mudah',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -79,7 +80,7 @@ class _RegisterPagesState extends State<RegisterPages> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
             child: Text(
-              'Masukkan nomor handphone kamu dan pastikan nomor kamu benar dan aktif',
+              'Masukkan nomor handphone dan alamat email kamu yang aktif',
               style: TextStyle(
                 fontSize: 15,
                 color: assetsColor.textRegisterArea,
@@ -87,35 +88,19 @@ class _RegisterPagesState extends State<RegisterPages> {
             ),
           ),
 
-          /// "PHONE" TEXT FIELDS
-          /*Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-            child: Center(
-              child: TextField(
-                controller: _phoneNumber,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    labelText: 'Nomor Handphone',
-                    prefixIcon:
-                        Icon(Icons.phone, color: assetsColor.textRegisterArea),
-                    prefixText: '+62 '),
-              ),
-            ),
-          ),*/
-
+          /// "PHONE NUMBER" TEXT FIELD
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+            padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+            height: 80,
             child: Center(
               child: IntlPhoneField(
                 decoration: InputDecoration(
                   labelText: 'Nomor Handphone',
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
-                  prefixIcon:
-                      Icon(Icons.phone, color: assetsColor.textLoginArea),
+                  prefixIcon: Icon(Icons.phone_outlined,
+                      color: assetsColor.textLoginArea),
                 ),
                 initialCountryCode: 'ID',
                 // Set the initial country code to Indonesia
@@ -130,16 +115,41 @@ class _RegisterPagesState extends State<RegisterPages> {
             ),
           ),
 
-          if (messagecheck != null)
-            Container(
+          Visibility(
+            visible: messagecheck != null,
+            // Tentukan apakah widget harus terlihat atau tidak
+            child: Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Text(
-                messagecheck!,
+                messagecheck ?? '',
+                // Jika messagecheck null, gunakan string kosong
                 style: TextStyle(
                   color: Colors.red, // Warna teks merah
                 ),
               ),
             ),
+          ),
+
+          /// "PHONE" TEXT FIELDS
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Center(
+              child: TextField(
+                controller: registerEmailMitra,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                  labelText: 'Alamat email',
+                  prefixIcon: Icon(
+                    Icons.email_outlined,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
+            ),
+          ),
 
           Expanded(
             child: Container(),
@@ -294,6 +304,11 @@ class _RegisterPagesState extends State<RegisterPages> {
                         }
                         logicApi.sendOTPDefault(context, phoneNumber);
                       }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OTPRegister()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

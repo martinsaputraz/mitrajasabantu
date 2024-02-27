@@ -2,7 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/LOGIN/OTPLogin.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/RESET_PHONE/resetPhone.dart';
 import 'package:jasa_bantu/Settings/logicapi.dart';
 
 AssetsColor assetsColor = AssetsColor();
@@ -41,7 +43,6 @@ class _LoginPagesState extends State<LoginPages> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           /// LOGO JASA BANTU BG WHITE
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -82,11 +83,11 @@ class _LoginPagesState extends State<LoginPages> {
               child: IntlPhoneField(
                 decoration: InputDecoration(
                   labelText: 'Nomor Handphone',
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
                   prefixIcon:
-                  Icon(Icons.phone, color: assetsColor.textLoginArea),
+                      Icon(Icons.phone, color: assetsColor.textLoginArea),
                 ),
                 initialCountryCode: 'ID',
                 // Set the initial country code to Indonesia
@@ -96,7 +97,7 @@ class _LoginPagesState extends State<LoginPages> {
                     phoneNumberLogin = phone.completeNumber;
                   });
                 },
-                inputFormatters: [],
+                inputFormatters: const [],
               ),
             ),
           ),
@@ -111,7 +112,7 @@ class _LoginPagesState extends State<LoginPages> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: ' Nomor sudah tidak aktif atau hilang? ',
+                        text: ' Nomor bermasalah? ',
                         style: TextStyle(
                           color: assetsColor.textLoginArea,
                         ),
@@ -125,11 +126,11 @@ class _LoginPagesState extends State<LoginPages> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const RegisterApps()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ResetPhone()),
+                            );
                           },
                       ),
                     ],
@@ -146,7 +147,6 @@ class _LoginPagesState extends State<LoginPages> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               /// TEXT SPAN "KETENTUAN LAYANAN" & "KEBIJAKAN PRIVASI"
               Container(
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -217,17 +217,20 @@ class _LoginPagesState extends State<LoginPages> {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (phoneNumberLogin == "") {} else {
-                        print(phoneNumberLogin);
+                      if (phoneNumberLogin == "") {
+                      } else {
                         if (phoneNumberLogin.startsWith('+')) {
                           phoneNumber = phoneNumberLogin
                               .substring(1); // Remove the leading '+'
                         }
-                        print(phoneNumber);
 
-
-                        logicApi.LoginBYPhone(context, phoneNumber);
+                        logicApi.LoginApi(context, phoneNumber);
                       }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OTPLogin()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: assetsColor.buttonNextRegister,

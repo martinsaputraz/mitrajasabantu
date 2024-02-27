@@ -21,7 +21,10 @@ class _RecommendedServicesState extends State<RecommendedServices> {
       'recommendCardDiscountPercentage': '40%',
       'recommendCardDiscountedPrice': '275.000',
       'recommendCardRating': '4.9',
-      'recommendCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'recommendCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(1).png',
+      'recommendCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(1).png',
     },
     {
       'recommendCardTitle': 'Again Faster',
@@ -34,7 +37,10 @@ class _RecommendedServicesState extends State<RecommendedServices> {
       'recommendCardDiscountPercentage': '40%',
       'recommendCardDiscountedPrice': '275.000',
       'recommendCardRating': '5.0',
-      'recommendCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'recommendCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(4).png',
+      'recommendCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(4).png',
     },
     {
       'recommendCardTitle': 'Anika Lifestyle Service',
@@ -47,7 +53,10 @@ class _RecommendedServicesState extends State<RecommendedServices> {
       'recommendCardDiscountPercentage': '40%',
       'recommendCardDiscountedPrice': '275.000',
       'recommendCardRating': '4.5',
-      'recommendCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'recommendCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(5).png',
+      'recommendCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(5).png',
     },
     {
       'recommendCardTitle': 'Story Bots',
@@ -60,7 +69,10 @@ class _RecommendedServicesState extends State<RecommendedServices> {
       'recommendCardDiscountPercentage': '40%',
       'recommendCardDiscountedPrice': '275.000',
       'recommendCardRating': '4.4',
-      'recommendCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'recommendCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(6).png',
+      'recommendCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(6).png',
     },
     // Add more data entries as needed
   ];
@@ -107,6 +119,9 @@ class _RecommendedServicesState extends State<RecommendedServices> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
+                // crossAxisSpacing: 5,
+                // mainAxisSpacing: 5,
+                // childAspectRatio: 1,
                 children: List.generate(
                   recommendedServicesData.length,
                   (index) => Padding(
@@ -140,8 +155,12 @@ class SurroundingServicesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
         constraints: const BoxConstraints(
           maxWidth: 180,
+          maxHeight: 500,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +173,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    cardSurroundingServices['recommendCardImagePath'],
+                    cardSurroundingServices['recommendCardBannerImages'],
                     height: 100,
                     width: 200,
                     fit: BoxFit.cover,
@@ -192,8 +211,8 @@ class SurroundingServicesWidget extends StatelessWidget {
                     radius: 40,
                     backgroundColor: Colors.brown.shade800,
                     backgroundImage: showImage
-                        ? AssetImage(
-                            cardSurroundingServices['recommendCardImagePath'])
+                        ? AssetImage(cardSurroundingServices[
+                            'recommendCardProfileImages'])
                         : null,
                     child: showImage ? null : const Text('EP'),
                   ),

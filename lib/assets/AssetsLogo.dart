@@ -1,6 +1,6 @@
 class AssetsLogo {
   /// LOGO JASA BANTU
-  String assetsLogo = 'assets/logo/logo_jasabantu.jpg';
-  String jbLogoBGWhite = 'assets/logo/logo_jasabantu_bgwhite.jpg';
-  String jbLogoCutting = 'assets/logo/logo_jasabantu_cutting.jpg';
+  String assetsLogo = 'assets/logo/JB_LogoText_White-removebg.png';
+  String jbLogoBGWhite = 'assets/logo/JB_LogoText_White-removebg.png';
+  String jbLogoCutting = 'assets/logo/JB_LogoText_Black-removebg.png';
 }

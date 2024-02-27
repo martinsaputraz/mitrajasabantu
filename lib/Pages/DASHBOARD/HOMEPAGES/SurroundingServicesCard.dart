@@ -21,8 +21,10 @@ class _SurroundingServicesState extends State<SurroundingServices> {
       'surroundingServicesDiscountPercentage': '40%',
       'surroundingServicesDiscountedPrice': '275.000',
       'surroundingServicesRating': '4.9',
-      'surroundingServicesImagePath':
-          'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesBannerImages':
+          'assets/images/CardImages/Card_BannerImages(1).png',
+      'surroundingServicesProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(1).png',
     },
     {
       'surroundingServicesTitle': 'Again Faster',
@@ -35,8 +37,10 @@ class _SurroundingServicesState extends State<SurroundingServices> {
       'surroundingServicesDiscountPercentage': '40%',
       'surroundingServicesDiscountedPrice': '275.000',
       'surroundingServicesRating': '5.0',
-      'surroundingServicesImagePath':
-          'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesBannerImages':
+          'assets/images/CardImages/Card_BannerImages(7).png',
+      'surroundingServicesProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(7).png',
     },
     {
       'surroundingServicesTitle': 'Anika Lifestyle Service',
@@ -49,8 +53,10 @@ class _SurroundingServicesState extends State<SurroundingServices> {
       'surroundingServicesDiscountPercentage': '40%',
       'surroundingServicesDiscountedPrice': '275.000',
       'surroundingServicesRating': '4.5',
-      'surroundingServicesImagePath':
-          'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesBannerImages':
+          'assets/images/CardImages/Card_BannerImages(8).png',
+      'surroundingServicesProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(8).png',
     },
     {
       'surroundingServicesTitle': 'Story Bots',
@@ -63,8 +69,10 @@ class _SurroundingServicesState extends State<SurroundingServices> {
       'surroundingServicesDiscountPercentage': '40%',
       'surroundingServicesDiscountedPrice': '275.000',
       'surroundingServicesRating': '4.4',
-      'surroundingServicesImagePath':
-          'assets/images/Background_DiscountCard(1).jpg',
+      'surroundingServicesBannerImages':
+          'assets/images/CardImages/Card_BannerImages(9).png',
+      'surroundingServicesProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(9).png',
     },
     // Add more data entries as needed
   ];
@@ -85,16 +93,16 @@ class _SurroundingServicesState extends State<SurroundingServices> {
                 child: Row(
                   children: [
                     const Text(
-                      'Jasa di sekitar kamu',
+                      'Jasa di sekitar kamu 🏡',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      'assets/icon/Icon_Home(1).jpg',
-                      height: 30,
-                      width: 30,
-                    ),
+                    // const SizedBox(width: 5),
+                    // Image.asset(
+                    //   'assets/icon/Icon_Home(1).jpg',
+                    //   height: 30,
+                    //   width: 30,
+                    // ),
                   ],
                 ),
               ),
@@ -132,6 +140,7 @@ class SurroundingServicesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
+        decoration: const BoxDecoration(color: Colors.white),
         constraints: const BoxConstraints(
           maxWidth: 180,
         ),
@@ -146,7 +155,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    cardSurroundingServices['surroundingServicesImagePath'],
+                    cardSurroundingServices['surroundingServicesBannerImages'],
                     height: 100,
                     width: 200,
                     fit: BoxFit.cover,
@@ -187,7 +196,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                     backgroundColor: Colors.brown.shade800,
                     backgroundImage: showImage
                         ? AssetImage(cardSurroundingServices[
-                            'surroundingServicesImagePath'])
+                            'surroundingServicesProfileImages'])
                         : null,
                     child: showImage ? null : const Text('EP'),
                   ),

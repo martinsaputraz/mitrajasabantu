@@ -32,14 +32,14 @@ class _DashboardPagesState extends State<DashboardPages> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndexMenuNavBar,
         onTap: _onMenuNavBarItem,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.indigo,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag_outlined), label: 'Produk'),
+              icon: Icon(Icons.shopping_bag_outlined), label: 'Jasamu'),
           BottomNavigationBarItem(icon: Icon(Icons.post_add), label: 'Pesanan'),
           BottomNavigationBarItem(
               icon: Icon(Icons.chat_outlined), label: 'Chat'),

@@ -39,14 +39,12 @@ class _OnboardingPagesState extends State<OnboardingPages> {
       backgroundColor: assetsColor.bgOnboardingPages,
       body: Column(
         children: [
-
           /// LOGO COMPANY & BUTTON "BAHASA"
           Container(
             padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 /// IMAGE LOGO
                 Image.asset(
                   assetsLogo.jbLogoCutting,
@@ -60,16 +58,16 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                     //
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: assetsColor.buttonSwitchLanguage,
+                    backgroundColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
+                      side: BorderSide(color: Colors.white),
                     ),
                   ),
-                  icon: Icon(Icons.translate,
-                      color: assetsColor.textSwitchLanguage, size: 20),
+                  icon: Icon(Icons.translate, color: Colors.white, size: 20),
                   label: Text(
                     'Bahasa',
-                    style: TextStyle(color: assetsColor.textSwitchLanguage),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],
@@ -78,10 +76,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
 
           /// SLIDE SHOW
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: const OnboardingContent(),
           ),
 
@@ -144,30 +139,15 @@ class _OnboardingPagesState extends State<OnboardingPages> {
             ],
           ),
 
-          const Divider(
-            height: 30,
-            thickness: 1,
-            color: Colors.white12,
-          ),
-
-          /// KOMPONEN BUTTON "MASUK & DAFTAR"
-          Container(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: Text(
-              'Atau gunakan nomor handphone kamu',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: assetsColor.textOnboardingArea),
-            ),
-          ),
+          const SizedBox(height: 10),
 
           /// BUTTON "MASUK & DAFTAR"
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                /// BUTTTON "MASUK"
+                /// BUTTTON "MASUK DENGAN AKUN JASA BANTU"
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
@@ -178,47 +158,36 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: assetsColor.buttonLogin,
+                      backgroundColor: Colors.transparent,
                       side: BorderSide(color: assetsColor.borderLoginButton),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                     ),
                     child: Text(
-                      'Masuk',
+                      'Masuk dengan akun Jasa Bantu',
                       style: TextStyle(
-                          color: assetsColor.textButtonLogin, fontSize: 18),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-
-                /// BUTTON DAFTAR
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                            const RegisterPages(
-                              message: '',
-                            )),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: assetsColor.buttonRegister,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                    child: Text(
-                      'Daftar',
-                      style: TextStyle(
-                          color: assetsColor.textButtonRegister,
-                          fontSize: 18),
+                          color: assetsColor.textButtonLogin, fontSize: 15),
                     ),
                   ),
                 ),
               ],
+            ),
+          ),
+
+          Container(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterPages(message: '')),
+                );
+              },
+              child: Text(
+                'Daftar akun Jasa Bantu',
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
             ),
           ),
         ],
@@ -230,13 +199,13 @@ class _OnboardingPagesState extends State<OnboardingPages> {
     try {
       GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
       UserCredential userCredential =
-      await _auth.signInWithProvider(googleAuthProvider);
+          await _auth.signInWithProvider(googleAuthProvider);
       User? user = userCredential.user;
 
       if (user != null) {
         setState(() {
           _user = user;
-          print("data_user: ${_user!.email}");
+          print("data_user: ${_user}");
         });
       } else {
         print("User is null");

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jasa_bantu/Assets/AssetsColor.dart';
 import 'package:jasa_bantu/Pages/Login&RegisterPages/ONBOARDING/OnboardingPages.dart';
+import 'package:jasa_bantu/Pages/Login&RegisterPages/REGISTER/CreateShopProfile.dart';
 import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:jasa_bantu/Settings/logicapi.dart';
 import 'package:jasa_bantu/Settings/rotasi.dart';
@@ -65,7 +66,6 @@ class _SettingPINState extends State<SettingPIN> {
       body: Center(
         child: Column(
           children: [
-
             /// ICON
             Container(
               child: Image.asset(
@@ -92,10 +92,10 @@ class _SettingPINState extends State<SettingPIN> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: Text(
                 'PIN akan digunakan untuk hal penting seperti\n'
-                    'masuk ke akun, bertransaksi, dll',
+                'masuk ke akun, bertransaksi, dll',
                 textAlign: TextAlign.center,
                 style:
-                TextStyle(fontSize: 15, color: assetsColor.textSetPINArea),
+                    TextStyle(fontSize: 15, color: assetsColor.textSetPINArea),
               ),
             ),
 
@@ -110,10 +110,7 @@ class _SettingPINState extends State<SettingPIN> {
                     obscureText: true,
                     keyboardType: TextInputType.number,
                     length: 6,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    width: MediaQuery.of(context).size.width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldWidth: 40,
                     fieldStyle: FieldStyle.box,
@@ -124,8 +121,7 @@ class _SettingPINState extends State<SettingPIN> {
                         setState(() {
                           setPinSimpan = pin;
                         });
-                      }
-                      else {
+                      } else {
                         print("heloworld");
                       }
                     },
@@ -144,7 +140,8 @@ class _SettingPINState extends State<SettingPIN> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (setPinSimpan == "") {} else {
+                    if (setPinSimpan == "") {
+                    } else {
                       setState(() {
                         textRotate = ID! +
                             constant.delimeterRegistration +
@@ -157,6 +154,11 @@ class _SettingPINState extends State<SettingPIN> {
 
                       logicApi.setPIN(context, data_nilai);
                     }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateShopProfile()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: assetsColor.buttonSavePIN,

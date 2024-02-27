@@ -21,7 +21,10 @@ class _DiscountCardState extends State<DiscountCard> {
       'discountCardPercentage': '74%',
       'discountedCardPrice': '355.000',
       'discountCardRating': '4.8',
-      'discountCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'discountCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(1).png',
+      'discountCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(1).png',
     },
     {
       'discountCardTitle': 'Zenith Group Innovation',
@@ -31,7 +34,10 @@ class _DiscountCardState extends State<DiscountCard> {
       'discountCardPercentage': '43%',
       'discountedCardPrice': '275.000',
       'discountCardRating': '4.9',
-      'discountCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'discountCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(2).png',
+      'discountCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(2).png',
     },
     {
       'discountCardTitle': 'Sonic Flare',
@@ -41,7 +47,10 @@ class _DiscountCardState extends State<DiscountCard> {
       'discountCardPercentage': '55%',
       'discountedCardPrice': '5.200.000',
       'discountCardRating': '4.7',
-      'discountCardImagePath': 'assets/images/Background_DiscountCard(1).jpg',
+      'discountCardBannerImages':
+          'assets/images/CardImages/Card_BannerImages(3).png',
+      'discountCardProfileImages':
+          'assets/images/CardImages/Card_ProfileImages(3).png',
     },
     // Add more data entries as needed
   ];
@@ -59,19 +68,19 @@ class _DiscountCardState extends State<DiscountCard> {
             children: [
               Container(
                 padding: const EdgeInsets.all(5),
-                child: Row(
+                child: const Row(
                   children: [
-                    const Text(
-                      'Kejar diskon setiap hari',
+                    Text(
+                      'Kejar diskon setiap hari 🛍️',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      'assets/icon/Icon_ShoppingBag_(Transparent).png',
-                      height: 30,
-                      width: 30,
-                    ),
+                    // const SizedBox(width: 5),
+                    // Image.asset(
+                    //   'assets/icon/Icon_ShoppingBag_(Transparent).png',
+                    //   height: 30,
+                    //   width: 30,
+                    // ),
                   ],
                 ),
               ),
@@ -110,6 +119,7 @@ class DiscountCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
+        decoration: const BoxDecoration(color: Colors.white),
         constraints: const BoxConstraints(
           maxHeight: 350,
           maxWidth: 200,
@@ -124,7 +134,7 @@ class DiscountCardWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    cardDataDiscount['discountCardImagePath'],
+                    cardDataDiscount['discountCardBannerImages'],
                     height: 100,
                     width: 200,
                     fit: BoxFit.cover,
@@ -162,7 +172,8 @@ class DiscountCardWidget extends StatelessWidget {
                     radius: 40,
                     backgroundColor: Colors.brown.shade800,
                     backgroundImage: showProfilePictureDiscountCard
-                        ? AssetImage(cardDataDiscount['discountCardImagePath'])
+                        ? AssetImage(
+                            cardDataDiscount['discountCardProfileImages'])
                         : null,
                     child: showProfilePictureDiscountCard
                         ? null

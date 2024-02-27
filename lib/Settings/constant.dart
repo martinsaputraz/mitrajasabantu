@@ -1,7 +1,6 @@
 class Constant {
   /// API
-  String loginApiByphone = "/loginByPhone";
-  String loginAPIBYemail = "/loginByEmail";
+  String Login = "/loginUser";
   String checkPin = "/loginPin";
   String setName = "/api/users/set_profile";
   String setPin = "/api/users/set_pin";
@@ -53,4 +52,9 @@ class Constant {
   String flagWa = "WA";
   String flagSms = "SMS";
   String delimeterRegistration = ":";
+  String delimeterPinLogin = "\$";
+
+  String flagnewUser = "new_user";
+  String flagUpdate = "register_phone";
+
 }

@@ -11,24 +11,30 @@ class VendorCard extends StatefulWidget {
 class _VendorCardState extends State<VendorCard> {
   List<Map<String, dynamic>> vendorCardData = [
     {
-      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
-      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardBannerPict':
+          'assets/images/CardImages/Card_BannerImages(9).png',
+      'vendorCardProfilePict':
+          'assets/images/CardImages/Card_ProfileImages(9).png',
       'vendorCardTitle': 'Anika Service Lifestyle',
       'vendorCardLocation': 'Jakarta Barat',
       'vendorCardRating': '4.9',
       'vendorCardTotalFollowers': '500+',
     },
     {
-      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
-      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardBannerPict':
+          'assets/images/CardImages/Card_BannerImages(8).png',
+      'vendorCardProfilePict':
+          'assets/images/CardImages/Card_ProfileImages(8).png',
       'vendorCardTitle': 'Fleify Landscape',
       'vendorCardLocation': 'Surabaya',
       'vendorCardRating': '4.6',
       'vendorCardTotalFollowers': '6,2K+',
     },
     {
-      'vendorCardBannerPict': 'assets/images/Background_DiscountCard(1).jpg',
-      'vendorCardProfilePict': 'assets/images/Background_DiscountCard(1).jpg',
+      'vendorCardBannerPict':
+          'assets/images/CardImages/Card_BannerImages(7).png',
+      'vendorCardProfilePict':
+          'assets/images/CardImages/Card_ProfileImages(7).png',
       'vendorCardTitle': 'Jennifer Andrea',
       'vendorCardLocation': 'Tangerang Selatan',
       'vendorCardRating': '4.7',
@@ -66,12 +72,12 @@ class _VendorCardState extends State<VendorCard> {
                     const Row(
                       children: [
                         Text(
-                          'Vendor pilihan untuk kebutuhanmu',
+                          'Vendor pilihan untuk kebutuhanmu 🤩',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(width: 5),
-                        Icon(Icons.star),
+                        // SizedBox(width: 5),
+                        // Icon(Icons.star),
                       ],
                     ),
                     Container(
@@ -216,7 +222,7 @@ class SurroundingServicesWidget extends StatelessWidget {
                 maxWidth: 150,
               ),
               decoration: BoxDecoration(
-                color: Colors.black12,
+                color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
