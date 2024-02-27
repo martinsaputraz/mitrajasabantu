@@ -14,7 +14,7 @@ import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Constant constant = Constant();
-print("helo world");
+
 class LogicApi {
   ///Variable
   String statusresponse = "";
@@ -24,6 +24,7 @@ class LogicApi {
   String token = "";
   String ID = "";
   String authorizationToken = 'MTIzNDUxOldlbGhhbjo2MjgxMjk2MDIzMDUx';
+  String hello = "";
 
   ///Send Otp
   sendOTPDefault(context, String phone) async {
@@ -72,7 +73,7 @@ class LogicApi {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       RegisterPages(message: messageresponse)),
-              (Route<dynamic> route) => true);
+                  (Route<dynamic> route) => true);
         }
       } else if (response.statusCode == 400) {
         var jsonResponse = json.decode(response.body);
@@ -209,7 +210,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const InputName()),
-            (Route<dynamic> route) => false);
+                (Route<dynamic> route) => false);
       }
     } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
@@ -272,15 +273,15 @@ class LogicApi {
       if (process == "1") {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => InputName()),
-            (Route<dynamic> route) => true);
+                (Route<dynamic> route) => true);
       } else if (process == "2") {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => SettingPIN()),
-            (Route<dynamic> route) => true);
+                (Route<dynamic> route) => true);
       } else if (process == "3") {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => PINLogin()),
-            (Route<dynamic> route) => true);
+                (Route<dynamic> route) => true);
       }
     } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
@@ -337,7 +338,7 @@ class LogicApi {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       RegisterPages(message: messageresponse)),
-              (Route<dynamic> route) => true);
+                  (Route<dynamic> route) => true);
         }
       } else if (response.statusCode == 400) {
         var jsonResponse = json.decode(response.body);
@@ -375,7 +376,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const DashboardPages()),
-            (Route<dynamic> route) => false);
+                (Route<dynamic> route) => false);
       }
     } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
@@ -422,7 +423,7 @@ class LogicApi {
 
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => OTPLogin()),
-          (Route<dynamic> route) => true);
+              (Route<dynamic> route) => true);
     } else if (response.statusCode == 202) {
       var jsonResponse = json.decode(response.body);
 
@@ -481,7 +482,7 @@ class LogicApi {
 
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => OTPLogin()),
-          (Route<dynamic> route) => true);
+              (Route<dynamic> route) => true);
     } else if (response.statusCode == 202) {
       var jsonResponse = json.decode(response.body);
 
@@ -519,7 +520,7 @@ class LogicApi {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const DashboardPages()),
-            (Route<dynamic> route) => false);
+                (Route<dynamic> route) => false);
       }
     } else if (response.statusCode == 400) {
       print('message: ${jsonDecode(response.body)['message']}');
