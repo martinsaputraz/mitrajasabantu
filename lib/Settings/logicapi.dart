@@ -14,7 +14,7 @@ import 'package:jasa_bantu/Settings/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Constant constant = Constant();
-
+print("helo world");
 class LogicApi {
   ///Variable
   String statusresponse = "";
