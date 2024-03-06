@@ -24,6 +24,7 @@ class LogicApi {
   String token = "";
   String ID = "";
   String authorizationToken = 'MTIzNDUxOldlbGhhbjo2MjgxMjk2MDIzMDUx';
+  String helloz = "";
 
   ///Send Otp
   sendOTPDefault(context, String phone) async {
